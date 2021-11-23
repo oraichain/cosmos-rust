@@ -35,7 +35,7 @@ const WASMD_REV: &str = "v0.23.0";
 // working directory.
 
 /// The directory generated cosmos-sdk proto files go into in this repo
-const COSMOS_SDK_PROTO_DIR: &str = "../cosmos-sdk-proto/src/prost/";
+const COSMOS_SDK_PROTO_DIR: &str = "../cosmos-sdk-proto-althea/src/prost/";
 /// Directory where the cosmos-sdk submodule is located
 const COSMOS_SDK_DIR: &str = "../cosmos-sdk-go";
 /// Directory where the tendermint submodule is located

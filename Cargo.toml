@@ -2,6 +2,6 @@
 resolver = "2"
 members = [
     "proto-build",
-    "cosmos-sdk-proto",
+    "cosmos-sdk-proto-althea",
     "cosmrs"
 ]
