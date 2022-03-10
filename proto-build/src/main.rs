@@ -23,7 +23,7 @@ static QUIET: AtomicBool = AtomicBool::new(false);
 const COSMOS_SDK_REV: &str = "v0.45.1";
 
 /// The Tendermint commit or tag to be cloned and used to build the proto files
-const TENDERMINT_REV: &str = "v0.34.13";
+const TENDERMINT_REV: &str = "v0.34.16";
 
 /// The Cosmos ibc-go commit or tag to be cloned and used to build the proto files
 const IBC_REV: &str = "v2.0.3";
