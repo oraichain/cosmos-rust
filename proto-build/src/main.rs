@@ -23,16 +23,16 @@ static QUIET: AtomicBool = AtomicBool::new(false);
 const BECH32IBC_REV: &str = "v0.2.0-rc2";
 
 /// The Cosmos SDK commit or tag to be cloned and used to build the proto files
-const COSMOS_SDK_REV: &str = "v0.45.1";
+const COSMOS_SDK_REV: &str = "v0.45.2";
 
 /// The Ethermint commit or tag to be cloned and used to build the proto files
 const ETHERMINT_REV: &str = "v0.9.0";
 
 /// The Tendermint commit or tag to be cloned and used to build the proto files
-const TENDERMINT_REV: &str = "v0.34.16";
+const TENDERMINT_REV: &str = "v0.34.17";
 
 /// The Cosmos ibc-go commit or tag to be cloned and used to build the proto files
-const IBC_REV: &str = "v2.0.3";
+const IBC_REV: &str = "v2.2.0";
 
 /// The wasmd commit or tag to be cloned and used to build the proto files
 const WASMD_REV: &str = "v0.23.0";
@@ -389,7 +389,6 @@ fn compile_sdk_protos_and_services(out_dir: &Path) {
     tonic_build::configure()
         .build_client(true)
         .build_server(false)
-        .format(true)
         .out_dir(out_dir)
         .extern_path(".tendermint", "crate::tendermint")
         .compile(&protos, &includes)
@@ -466,7 +465,6 @@ fn compile_tendermint_protos_and_services(out_dir: &Path) {
     tonic_build::configure()
         .build_client(true)
         .build_server(false)
-        .format(true)
         .out_dir(out_dir)
         .compile(&proto_grpc_paths, &includes)
         .unwrap();
@@ -519,7 +517,6 @@ fn compile_wasmd_proto_services(out_dir: impl AsRef<Path>) {
     tonic_build::configure()
         .build_client(true)
         .build_server(false)
-        .format(true)
         .out_dir(out_dir)
         .compile(&services, &includes)
         .unwrap();
@@ -566,7 +563,6 @@ fn compile_ibc_protos_and_services(out_dir: &Path) {
     tonic_build::configure()
         .build_client(true)
         .build_server(false)
-        .format(true)
         .out_dir(out_dir)
         .extern_path(".tendermint", "crate::tendermint")
         .compile(&protos, &includes)
