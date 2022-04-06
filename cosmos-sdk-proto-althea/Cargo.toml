@@ -16,11 +16,11 @@ edition = "2021"
 rust-version = "1.56"
 
 [dependencies]
-prost = "0.9"
-prost-types = "0.9"
+prost = "0.10"
+prost-types = "0.10"
 
 # Optional dependencies
-tonic = { version = "0.6", optional = true }
+tonic = { version = "0.7", optional = true }
 
 [features]
 default = ["grpc"]
