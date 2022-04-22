@@ -9,6 +9,18 @@
 /// The version (commit hash) of the Cosmos SDK used when generating this library.
 pub const COSMOS_SDK_VERSION: &str = include_str!("prost/COSMOS_SDK_COMMIT");
 
+/// Bech32ibc protobuf definitions
+#[cfg(feature = "bech32ibc")]
+#[cfg_attr(docsrs, doc(cfg(feature = "bech32ibc")))]
+pub mod bech32ibc {
+    /// Messages and services handling CosmWasm.
+    pub mod bech32ibc {
+        pub mod v1 {
+            include!("prost/bech32ibc.bech32ibc.v1beta1.rs");
+        }
+    }
+}
+
 /// Cosmos protobuf definitions.
 pub mod cosmos {
     /// Authentication of accounts and transactions.

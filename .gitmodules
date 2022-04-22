@@ -10,3 +10,6 @@
 [submodule "tendermint"]
 	path = tendermint
 	url = https://github.com/tendermint/tendermint/
+[submodule "bech32-ibc"]
+	path = bech32-ibc
+	url = git@github.com:althea-net/bech32-ibc.git

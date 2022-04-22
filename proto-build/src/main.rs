@@ -19,6 +19,9 @@ use walkdir::WalkDir;
 // TODO(tarcieri): use a logger for this
 static QUIET: AtomicBool = AtomicBool::new(false);
 
+// The osmosis-labs/bech32-ibc commit or tag to be cloned and used to build the proto files
+const BECH32IBC_REV: &str = "v0.2.0-rc2";
+
 /// The Cosmos SDK commit or tag to be cloned and used to build the proto files
 const COSMOS_SDK_REV: &str = "v0.45.1";
 
@@ -36,6 +39,9 @@ const WASMD_REV: &str = "v0.23.0";
 
 /// The directory generated cosmos-sdk proto files go into in this repo
 const COSMOS_SDK_PROTO_DIR: &str = "../cosmos-sdk-proto-althea/src/prost/";
+
+// Directory where the osmosis-labs/bech32-ibc submodule is located
+const BECH32IBC_DIR: &str = "../bech32-ibc";
 /// Directory where the cosmos-sdk submodule is located
 const COSMOS_SDK_DIR: &str = "../cosmos-sdk-go";
 /// Directory where the tendermint submodule is located
@@ -95,17 +101,19 @@ fn main() {
     output_tendermint_version(&tmp_build_dir);
     output_ibc_version(&tmp_build_dir);
     output_wasmd_version(&tmp_build_dir);
+    output_bech32ibc_version(&tmp_build_dir);
     compile_sdk_protos_and_services(&tmp_build_dir);
     compile_ibc_protos_and_services(&tmp_build_dir);
     compile_wasmd_protos(&tmp_build_dir);
     compile_wasmd_proto_services(&tmp_build_dir);
     compile_tendermint_protos_and_services(&tmp_build_dir);
+    compile_bech32ibc_protos_and_service(&tmp_build_dir);
     copy_generated_files(&tmp_build_dir, &proto_dir);
 
     if is_github() {
         println!(
-            "Rebuild protos with proto-build (cosmos-sdk rev: {} tendermint rev: {} ibc-go rev: {} wasmd rev: {}))",
-            COSMOS_SDK_REV, TENDERMINT_REV, IBC_REV, WASMD_REV
+            "Rebuild protos with proto-build (bech32ibc rev: {} cosmos-sdk rev: {} tendermint rev: {} ibc-go rev: {} wasmd rev: {}))",
+            BECH32IBC_REV, COSMOS_SDK_REV, TENDERMINT_REV, IBC_REV, WASMD_REV
         );
     }
 }
@@ -162,6 +170,16 @@ fn update_submodules() {
     info!("Updating wasmd submodule...");
     run_git(&["-C", WASMD_DIR, "fetch"]);
     run_git(&["-C", WASMD_DIR, "reset", "--hard", WASMD_REV]);
+
+    info!("Updating osmosis-labs/bech32-ibc submodule...");
+    run_git(&["-C", BECH32IBC_DIR, "fetch"]);
+    run_git(&["-C", BECH32IBC_DIR, "reset", "--hard", BECH32IBC_REV]);
+
+}
+
+fn output_bech32ibc_version(out_dir: &Path) {
+    let path = out_dir.join("BECH32IBC_COMMIT");
+    fs::write(path, BECH32IBC_REV).unwrap();
 }
 
 fn output_sdk_version(out_dir: &Path) {
@@ -184,11 +202,53 @@ fn output_wasmd_version(out_dir: &Path) {
     fs::write(path, WASMD_REV).unwrap();
 }
 
+fn compile_bech32ibc_protos_and_service(out_dir: &Path) {
+    info!(
+        "Compiling bech32-ibc .proto files to Rust into '{}'...",
+        out_dir.display()
+    );
+
+    let root = env!("CARGO_MANIFEST_DIR");
+    let bech32ibc_dir = Path::new(BECH32IBC_DIR);
+
+    let proto_includes_paths = [
+        format!("{}/../proto", root),
+        format!("{}/proto", bech32ibc_dir.display()),
+        format!("{}/third_party/proto", bech32ibc_dir.display()),
+        format!("{}/proto/bech32ibc", bech32ibc_dir.display()),
+    ];
+
+    // Paths
+    let proto_paths = [
+        format!("{}/proto/bech32ibc/", bech32ibc_dir.display()),
+    ];
+
+    // List available proto files
+    let mut protos: Vec<PathBuf> = vec![];
+    collect_protos(&proto_paths, &mut protos);
+
+    // List available paths for dependencies
+    let includes: Vec<PathBuf> = proto_includes_paths.iter().map(PathBuf::from).collect();
+
+    // Compile all of the proto files, along with grpc service clients
+    info!("Compiling proto definitions and clients for GRPC services!");
+    tonic_build::configure()
+        .build_client(true)
+        .build_server(false)
+        .format(true)
+        .out_dir(out_dir)
+        .extern_path(".tendermint", "crate::tendermint")
+        .compile(&protos, &includes)
+        .unwrap();
+
+    info!("=> Done!");
+}
+
 fn compile_wasmd_protos(out_dir: &Path) {
     let sdk_dir = Path::new(WASMD_DIR);
 
     info!(
-        "Compiling .proto files to Rust into '{}'...",
+        "Compiling wasmd .proto files to Rust into '{}'...",
         out_dir.display()
     );
 
@@ -412,7 +472,7 @@ fn compile_wasmd_proto_services(out_dir: impl AsRef<Path>) {
 
 fn compile_ibc_protos_and_services(out_dir: &Path) {
     info!(
-        "Compiling .proto files to Rust into '{}'...",
+        "Compiling ibc .proto files to Rust into '{}'...",
         out_dir.display()
     );
 
