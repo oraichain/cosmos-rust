@@ -21,7 +21,7 @@ pub mod bech32ibc {
     }
 }
 
-/// Bech32ibc protobuf definitions
+/// Ethermint protobuf definitions
 #[cfg(feature = "ethermint")]
 #[cfg_attr(docsrs, doc(cfg(feature = "ethermint")))]
 pub mod ethermint {
