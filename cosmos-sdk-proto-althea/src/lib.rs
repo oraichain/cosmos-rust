@@ -13,10 +13,44 @@ pub const COSMOS_SDK_VERSION: &str = include_str!("prost/COSMOS_SDK_COMMIT");
 #[cfg(feature = "bech32ibc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "bech32ibc")))]
 pub mod bech32ibc {
-    /// Messages and services handling CosmWasm.
+    /// Bech32 prefix -> IBC Channel mapping
     pub mod bech32ibc {
         pub mod v1 {
             include!("prost/bech32ibc.bech32ibc.v1beta1.rs");
+        }
+    }
+}
+
+/// Bech32ibc protobuf definitions
+#[cfg(feature = "ethermint")]
+#[cfg_attr(docsrs, doc(cfg(feature = "ethermint")))]
+pub mod ethermint {
+    pub mod ethermint {
+        /// Ethermint EthSecp256k1 support
+        pub mod crypto {
+            pub mod v1 {
+                pub mod ethsecp256k1 {
+                    include!("prost/ethermint.crypto.v1.ethsecp256k1.rs");
+                }
+            }
+        }
+        /// EVM support
+        pub mod evm {
+            pub mod v1 {
+                include!("prost/ethermint.evm.v1.rs");
+            }
+        }
+        /// Feemarket support
+        pub mod feemarket {
+            pub mod v1 {
+                include!("prost/ethermint.feemarket.v1.rs");
+            }
+        }
+        /// Ethermint types
+        pub mod types {
+            pub mod v1 {
+                include!("prost/ethermint.types.v1.rs");
+            }
         }
     }
 }
