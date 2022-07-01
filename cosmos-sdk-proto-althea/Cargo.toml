@@ -1,6 +1,6 @@
 [package]
 name = "cosmos-sdk-proto-althea"
-version = "0.13.1" # Also update html_root_url in lib.rs when bumping this
+version = "0.13.2" # Also update html_root_url in lib.rs when bumping this
 authors = [
     "Justin Kilpatrick <justin@althea.net>",
     "Greg Szabo <greg@informal.systems>",
@@ -26,6 +26,8 @@ tonic = { version = "0.6", optional = true }
 default = ["grpc"]
 grpc = ["tonic"]
 cosmwasm = []
+bech32ibc = []
+ethermint = []
 
 [package.metadata.docs.rs]
 all-features = true

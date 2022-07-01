@@ -25,32 +25,30 @@ pub mod bech32ibc {
 #[cfg(feature = "ethermint")]
 #[cfg_attr(docsrs, doc(cfg(feature = "ethermint")))]
 pub mod ethermint {
-    pub mod ethermint {
-        /// Ethermint EthSecp256k1 support
-        pub mod crypto {
-            pub mod v1 {
-                pub mod ethsecp256k1 {
-                    include!("prost/ethermint.crypto.v1.ethsecp256k1.rs");
-                }
+    /// Ethermint EthSecp256k1 support
+    pub mod crypto {
+        pub mod v1 {
+            pub mod ethsecp256k1 {
+                include!("prost/ethermint.crypto.v1.ethsecp256k1.rs");
             }
         }
-        /// EVM support
-        pub mod evm {
-            pub mod v1 {
-                include!("prost/ethermint.evm.v1.rs");
-            }
+    }
+    /// EVM support
+    pub mod evm {
+        pub mod v1 {
+            include!("prost/ethermint.evm.v1.rs");
         }
-        /// Feemarket support
-        pub mod feemarket {
-            pub mod v1 {
-                include!("prost/ethermint.feemarket.v1.rs");
-            }
+    }
+    /// Feemarket support
+    pub mod feemarket {
+        pub mod v1 {
+            include!("prost/ethermint.feemarket.v1.rs");
         }
-        /// Ethermint types
-        pub mod types {
-            pub mod v1 {
-                include!("prost/ethermint.types.v1.rs");
-            }
+    }
+    /// Ethermint types
+    pub mod types {
+        pub mod v1 {
+            include!("prost/ethermint.types.v1.rs");
         }
     }
 }
