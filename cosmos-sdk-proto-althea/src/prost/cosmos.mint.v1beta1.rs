@@ -100,7 +100,7 @@ pub mod query_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Default + Body<Data = Bytes> + Send + 'static,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
         <T::ResponseBody as Body>::Error: Into<StdError> + Send,
     {
         pub fn new(inner: T) -> Self {
@@ -113,6 +113,7 @@ pub mod query_client {
         ) -> QueryClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
             T: tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
                 Response = http::Response<
@@ -185,9 +186,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAnnualProvisionsRequest>,
         ) -> Result<
-                tonic::Response<super::QueryAnnualProvisionsResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryAnnualProvisionsResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await

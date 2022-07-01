@@ -327,7 +327,7 @@ pub mod query_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Default + Body<Data = Bytes> + Send + 'static,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
         <T::ResponseBody as Body>::Error: Into<StdError> + Send,
     {
         pub fn new(inner: T) -> Self {
@@ -340,6 +340,7 @@ pub mod query_client {
         ) -> QueryClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
             T: tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
                 Response = http::Response<
@@ -392,9 +393,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryContractHistoryRequest>,
         ) -> Result<
-                tonic::Response<super::QueryContractHistoryResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryContractHistoryResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -415,9 +416,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryContractsByCodeRequest>,
         ) -> Result<
-                tonic::Response<super::QueryContractsByCodeResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryContractsByCodeResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -438,9 +439,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllContractStateRequest>,
         ) -> Result<
-                tonic::Response<super::QueryAllContractStateResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryAllContractStateResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -461,9 +462,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryRawContractStateRequest>,
         ) -> Result<
-                tonic::Response<super::QueryRawContractStateResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryRawContractStateResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -484,9 +485,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QuerySmartContractStateRequest>,
         ) -> Result<
-                tonic::Response<super::QuerySmartContractStateResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QuerySmartContractStateResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -720,7 +721,7 @@ pub mod msg_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Default + Body<Data = Bytes> + Send + 'static,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
         <T::ResponseBody as Body>::Error: Into<StdError> + Send,
     {
         pub fn new(inner: T) -> Self {
@@ -733,6 +734,7 @@ pub mod msg_client {
         ) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
             T: tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
                 Response = http::Response<
@@ -785,9 +787,9 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgInstantiateContract>,
         ) -> Result<
-                tonic::Response<super::MsgInstantiateContractResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::MsgInstantiateContractResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await

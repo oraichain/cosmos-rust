@@ -312,7 +312,7 @@ pub mod query_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Default + Body<Data = Bytes> + Send + 'static,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
         <T::ResponseBody as Body>::Error: Into<StdError> + Send,
     {
         pub fn new(inner: T) -> Self {
@@ -325,6 +325,7 @@ pub mod query_client {
         ) -> QueryClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
             T: tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
                 Response = http::Response<
@@ -419,9 +420,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryConsensusStatesRequest>,
         ) -> Result<
-                tonic::Response<super::QueryConsensusStatesResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryConsensusStatesResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -482,9 +483,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryUpgradedClientStateRequest>,
         ) -> Result<
-                tonic::Response<super::QueryUpgradedClientStateResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryUpgradedClientStateResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -505,9 +506,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryUpgradedConsensusStateRequest>,
         ) -> Result<
-                tonic::Response<super::QueryUpgradedConsensusStateResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryUpgradedConsensusStateResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -632,7 +633,7 @@ pub mod msg_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Default + Body<Data = Bytes> + Send + 'static,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
         <T::ResponseBody as Body>::Error: Into<StdError> + Send,
     {
         pub fn new(inner: T) -> Self {
@@ -645,6 +646,7 @@ pub mod msg_client {
         ) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
             T: tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
                 Response = http::Response<
@@ -737,9 +739,9 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSubmitMisbehaviour>,
         ) -> Result<
-                tonic::Response<super::MsgSubmitMisbehaviourResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::MsgSubmitMisbehaviourResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await

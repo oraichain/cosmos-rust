@@ -2,13 +2,13 @@
 /// signing misbehavior.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct Equivocation {
-    #[prost(int64, tag = "1")]
+    #[prost(int64, tag="1")]
     pub height: i64,
-    #[prost(message, optional, tag = "2")]
+    #[prost(message, optional, tag="2")]
     pub time: ::core::option::Option<::prost_types::Timestamp>,
-    #[prost(int64, tag = "3")]
+    #[prost(int64, tag="3")]
     pub power: i64,
-    #[prost(string, tag = "4")]
+    #[prost(string, tag="4")]
     pub consensus_address: ::prost::alloc::string::String,
 }
 /// GenesisState defines the evidence module's genesis state.
@@ -75,7 +75,7 @@ pub mod query_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Default + Body<Data = Bytes> + Send + 'static,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
         <T::ResponseBody as Body>::Error: Into<StdError> + Send,
     {
         pub fn new(inner: T) -> Self {
@@ -88,6 +88,7 @@ pub mod query_client {
         ) -> QueryClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
             T: tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
                 Response = http::Response<
@@ -197,7 +198,7 @@ pub mod msg_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Default + Body<Data = Bytes> + Send + 'static,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
         <T::ResponseBody as Body>::Error: Into<StdError> + Send,
     {
         pub fn new(inner: T) -> Self {
@@ -210,6 +211,7 @@ pub mod msg_client {
         ) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
             T: tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
                 Response = http::Response<

@@ -613,7 +613,7 @@ pub mod query_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Default + Body<Data = Bytes> + Send + 'static,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
         <T::ResponseBody as Body>::Error: Into<StdError> + Send,
     {
         pub fn new(inner: T) -> Self {
@@ -626,6 +626,7 @@ pub mod query_client {
         ) -> QueryClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
             T: tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
                 Response = http::Response<
@@ -698,9 +699,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryValidatorDelegationsRequest>,
         ) -> Result<
-                tonic::Response<super::QueryValidatorDelegationsResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryValidatorDelegationsResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -723,9 +724,9 @@ pub mod query_client {
                 super::QueryValidatorUnbondingDelegationsRequest,
             >,
         ) -> Result<
-                tonic::Response<super::QueryValidatorUnbondingDelegationsResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryValidatorUnbondingDelegationsResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -767,9 +768,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryUnbondingDelegationRequest>,
         ) -> Result<
-                tonic::Response<super::QueryUnbondingDelegationResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryUnbondingDelegationResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -790,9 +791,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDelegatorDelegationsRequest>,
         ) -> Result<
-                tonic::Response<super::QueryDelegatorDelegationsResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryDelegatorDelegationsResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -816,9 +817,9 @@ pub mod query_client {
                 super::QueryDelegatorUnbondingDelegationsRequest,
             >,
         ) -> Result<
-                tonic::Response<super::QueryDelegatorUnbondingDelegationsResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryDelegatorUnbondingDelegationsResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -860,9 +861,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDelegatorValidatorsRequest>,
         ) -> Result<
-                tonic::Response<super::QueryDelegatorValidatorsResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryDelegatorValidatorsResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -884,9 +885,9 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDelegatorValidatorRequest>,
         ) -> Result<
-                tonic::Response<super::QueryDelegatorValidatorResponse>,
-                tonic::Status,
-            > {
+            tonic::Response<super::QueryDelegatorValidatorResponse>,
+            tonic::Status,
+        > {
             self.inner
                 .ready()
                 .await
@@ -1081,7 +1082,7 @@ pub mod msg_client {
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
-        T::ResponseBody: Default + Body<Data = Bytes> + Send + 'static,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
         <T::ResponseBody as Body>::Error: Into<StdError> + Send,
     {
         pub fn new(inner: T) -> Self {
@@ -1094,6 +1095,7 @@ pub mod msg_client {
         ) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
             T: tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
                 Response = http::Response<

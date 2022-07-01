@@ -3,43 +3,43 @@
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct HrpIbcRecord {
     /// The bech32 human readable prefix that serves as the key
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub hrp: ::prost::alloc::string::String,
     /// the channel by which the packet will be sent
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub source_channel: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "3")]
+    #[prost(uint64, tag="3")]
     pub ics_to_height_offset: u64,
-    #[prost(message, optional, tag = "4")]
+    #[prost(message, optional, tag="4")]
     pub ics_to_time_offset: ::core::option::Option<::prost_types::Duration>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryHrpIbcRecordsRequest {}
+pub struct QueryHrpIbcRecordsRequest {
+}
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryHrpIbcRecordsResponse {
-    #[prost(message, repeated, tag = "1")]
+    #[prost(message, repeated, tag="1")]
     pub hrp_ibc_records: ::prost::alloc::vec::Vec<HrpIbcRecord>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryHrpIbcRecordRequest {
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub hrp: ::prost::alloc::string::String,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryHrpIbcRecordResponse {
-    #[prost(message, optional, tag = "1")]
+    #[prost(message, optional, tag="1")]
     pub hrp_ibc_record: ::core::option::Option<HrpIbcRecord>,
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryNativeHrpRequest {}
+pub struct QueryNativeHrpRequest {
+}
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QueryNativeHrpResponse {
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub native_hrp: ::prost::alloc::string::String,
 }
-#[cfg(feature = "grpc")]
-#[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
-#[doc = r" Generated client implementations."]
+/// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
@@ -48,7 +48,7 @@ pub mod query_client {
         inner: tonic::client::Grpc<T>,
     }
     impl QueryClient<tonic::transport::Channel> {
-        #[doc = r" Attempt to create a new client by connecting to a given endpoint."]
+        /// Attempt to create a new client by connecting to a given endpoint.
         pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
         where
             D: std::convert::TryInto<tonic::transport::Endpoint>,
@@ -61,8 +61,8 @@ pub mod query_client {
     impl<T> QueryClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
-        T::ResponseBody: Body + Send + 'static,
         T::Error: Into<StdError>,
+        T::ResponseBody: Body<Data = Bytes> + Send + 'static,
         <T::ResponseBody as Body>::Error: Into<StdError> + Send,
     {
         pub fn new(inner: T) -> Self {
@@ -75,75 +75,88 @@ pub mod query_client {
         ) -> QueryClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
+            T::ResponseBody: Default,
             T: tonic::codegen::Service<
                 http::Request<tonic::body::BoxBody>,
                 Response = http::Response<
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
-                Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<
+                http::Request<tonic::body::BoxBody>,
+            >>::Error: Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
-        #[doc = r" Compress requests with `gzip`."]
-        #[doc = r""]
-        #[doc = r" This requires the server to support it otherwise it might respond with an"]
-        #[doc = r" error."]
+        /// Compress requests with `gzip`.
+        ///
+        /// This requires the server to support it otherwise it might respond with an
+        /// error.
+        #[must_use]
         pub fn send_gzip(mut self) -> Self {
             self.inner = self.inner.send_gzip();
             self
         }
-        #[doc = r" Enable decompressing responses with `gzip`."]
+        /// Enable decompressing responses with `gzip`.
+        #[must_use]
         pub fn accept_gzip(mut self) -> Self {
             self.inner = self.inner.accept_gzip();
             self
         }
-        #[doc = " HrpIbcRecords returns to full list of records"]
+        /// HrpIbcRecords returns to full list of records
         pub async fn hrp_ibc_records(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryHrpIbcRecordsRequest>,
         ) -> Result<tonic::Response<super::QueryHrpIbcRecordsResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/bech32ibc.bech32ibc.v1beta1.Query/HrpIbcRecords",
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = " HrpIbcRecord returns the record for a requested HRP"]
+        /// HrpIbcRecord returns the record for a requested HRP
         pub async fn hrp_ibc_record(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryHrpIbcRecordRequest>,
         ) -> Result<tonic::Response<super::QueryHrpIbcRecordResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/bech32ibc.bech32ibc.v1beta1.Query/HrpIbcRecord",
             );
             self.inner.unary(request.into_request(), path, codec).await
         }
-        #[doc = " NativeHrp returns the chain's native HRP"]
+        /// NativeHrp returns the chain's native HRP
         pub async fn native_hrp(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryNativeHrpRequest>,
         ) -> Result<tonic::Response<super::QueryNativeHrpResponse>, tonic::Status> {
-            self.inner.ready().await.map_err(|e| {
-                tonic::Status::new(
-                    tonic::Code::Unknown,
-                    format!("Service was not ready: {}", e.into()),
-                )
-            })?;
+            self.inner
+                .ready()
+                .await
+                .map_err(|e| {
+                    tonic::Status::new(
+                        tonic::Code::Unknown,
+                        format!("Service was not ready: {}", e.into()),
+                    )
+                })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/bech32ibc.bech32ibc.v1beta1.Query/NativeHrp",
@@ -154,9 +167,9 @@ pub mod query_client {
 }
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GenesisState {
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub native_hrp: ::prost::alloc::string::String,
-    #[prost(message, repeated, tag = "2")]
+    #[prost(message, repeated, tag="2")]
     pub hrp_ibc_records: ::prost::alloc::vec::Vec<HrpIbcRecord>,
 }
 /// UpdateHrpIBCRecordProposal is a gov Content type for adding a new record
@@ -166,16 +179,16 @@ pub struct GenesisState {
 /// is set to "", it will remove the record from the set.
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct UpdateHrpIbcChannelProposal {
-    #[prost(string, tag = "1")]
+    #[prost(string, tag="1")]
     pub title: ::prost::alloc::string::String,
-    #[prost(string, tag = "2")]
+    #[prost(string, tag="2")]
     pub description: ::prost::alloc::string::String,
-    #[prost(string, tag = "3")]
+    #[prost(string, tag="3")]
     pub hrp: ::prost::alloc::string::String,
-    #[prost(string, tag = "4")]
+    #[prost(string, tag="4")]
     pub source_channel: ::prost::alloc::string::String,
-    #[prost(uint64, tag = "5")]
+    #[prost(uint64, tag="5")]
     pub ics_to_height_offset: u64,
-    #[prost(message, optional, tag = "6")]
+    #[prost(message, optional, tag="6")]
     pub ics_to_time_offset: ::core::option::Option<::prost_types::Duration>,
 }
