@@ -12,7 +12,7 @@ edition = "2021"
 rust-version = "1.56"
 
 [dependencies]
-cosmos-sdk-proto = { package = "cosmos-sdk-proto-althea", version = "0.10", default-features = false, path = "../cosmos-sdk-proto-althea" }
+cosmos-sdk-proto = { package = "cosmos-sdk-proto-althea", version = "0.12", default-features = false, path = "../cosmos-sdk-proto-althea" }
 ecdsa = { version = "0.13", features = ["std"] }
 eyre = "0.6"
 k256 = { version = "0.10", features = ["ecdsa", "sha256"] }
