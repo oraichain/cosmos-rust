@@ -12,7 +12,7 @@
 	url = https://github.com/tendermint/tendermint/
 [submodule "bech32-ibc"]
 	path = bech32-ibc
-	url = git@github.com:althea-net/bech32-ibc.git
+	url = https://github.com/osmosis-labs/bech32-ibc.git
 [submodule "ethermint"]
 	path = ethermint
 	url = https://github.com/tharsis/ethermint.git
