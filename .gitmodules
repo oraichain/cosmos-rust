@@ -13,6 +13,7 @@
 [submodule "bech32-ibc"]
 	path = bech32-ibc
 	url = https://github.com/osmosis-labs/bech32-ibc.git
+	branch = master
 [submodule "ethermint"]
 	path = ethermint
 	url = https://github.com/tharsis/ethermint.git
