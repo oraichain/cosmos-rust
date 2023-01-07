@@ -1,42 +1,25 @@
-/// QueryAppVersionRequest is the request type for the Query/AppVersion RPC method
+/// ConfigRequest defines the request structure for the Config gRPC query.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryAppVersionRequest {
-    /// port unique identifier
-    #[prost(string, tag="1")]
-    pub port_id: ::prost::alloc::string::String,
-    /// connection unique identifier
-    #[prost(string, tag="2")]
-    pub connection_id: ::prost::alloc::string::String,
-    /// whether the channel is ordered or unordered
-    #[prost(enumeration="super::super::channel::v1::Order", tag="3")]
-    pub ordering: i32,
-    /// counterparty channel end
-    #[prost(message, optional, tag="4")]
-    pub counterparty: ::core::option::Option<super::super::channel::v1::Counterparty>,
-    /// proposed version
-    #[prost(string, tag="5")]
-    pub proposed_version: ::prost::alloc::string::String,
-}
-/// QueryAppVersionResponse is the response type for the Query/AppVersion RPC method.
+pub struct ConfigRequest {}
+/// ConfigResponse defines the response structure for the Config gRPC query.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryAppVersionResponse {
-    /// port id associated with the request identifiers
-    #[prost(string, tag="1")]
-    pub port_id: ::prost::alloc::string::String,
-    /// supported app version
-    #[prost(string, tag="2")]
-    pub version: ::prost::alloc::string::String,
+pub struct ConfigResponse {
+    #[prost(string, tag = "1")]
+    pub minimum_gas_price: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
-pub mod query_client {
+pub mod service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
-    /// Query defines the gRPC querier service
+    use tonic::codegen::http::Uri;
+    /// Service defines the gRPC querier service for node related queries.
     #[derive(Debug, Clone)]
-    pub struct QueryClient<T> {
+    pub struct ServiceClient<T> {
         inner: tonic::client::Grpc<T>,
     }
-    impl QueryClient<tonic::transport::Channel> {
+    impl ServiceClient<tonic::transport::Channel> {
         /// Attempt to create a new client by connecting to a given endpoint.
         pub async fn connect<D>(dst: D) -> Result<Self, tonic::transport::Error>
         where
@@ -47,7 +30,7 @@ pub mod query_client {
             Ok(Self::new(conn))
         }
     }
-    impl<T> QueryClient<T>
+    impl<T> ServiceClient<T>
     where
         T: tonic::client::GrpcService<tonic::body::BoxBody>,
         T::Error: Into<StdError>,
@@ -58,10 +41,14 @@ pub mod query_client {
             let inner = tonic::client::Grpc::new(inner);
             Self { inner }
         }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
         pub fn with_interceptor<F>(
             inner: T,
             interceptor: F,
-        ) -> QueryClient<InterceptedService<T, F>>
+        ) -> ServiceClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -75,28 +62,28 @@ pub mod query_client {
                 http::Request<tonic::body::BoxBody>,
             >>::Error: Into<StdError> + Send + Sync,
         {
-            QueryClient::new(InterceptedService::new(inner, interceptor))
+            ServiceClient::new(InterceptedService::new(inner, interceptor))
         }
-        /// Compress requests with `gzip`.
+        /// Compress requests with the given encoding.
         ///
         /// This requires the server to support it otherwise it might respond with an
         /// error.
         #[must_use]
-        pub fn send_gzip(mut self) -> Self {
-            self.inner = self.inner.send_gzip();
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
             self
         }
-        /// Enable decompressing responses with `gzip`.
+        /// Enable decompressing responses.
         #[must_use]
-        pub fn accept_gzip(mut self) -> Self {
-            self.inner = self.inner.accept_gzip();
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
             self
         }
-        /// AppVersion queries an IBC Port and determines the appropriate application version to be used
-        pub async fn app_version(
+        /// Config queries for the operator configuration.
+        pub async fn config(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryAppVersionRequest>,
-        ) -> Result<tonic::Response<super::QueryAppVersionResponse>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::ConfigRequest>,
+        ) -> Result<tonic::Response<super::ConfigResponse>, tonic::Status> {
             self.inner
                 .ready()
                 .await
@@ -108,7 +95,7 @@ pub mod query_client {
                 })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.port.v1.Query/AppVersion",
+                "/cosmos.base.node.v1beta1.Service/Config",
             );
             self.inner.unary(request.into_request(), path, codec).await
         }

@@ -1,29 +1,23 @@
-/// GenesisState defines the crisis module's genesis state.
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct GenesisState {
-    /// constant_fee is the fee used to verify the invariant in the crisis
-    /// module.
-    #[prost(message, optional, tag="3")]
-    pub constant_fee: ::core::option::Option<super::super::base::v1beta1::Coin>,
-}
 /// MsgVerifyInvariant represents a message to verify a particular invariance.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct MsgVerifyInvariant {
-    #[prost(string, tag="1")]
+    #[prost(string, tag = "1")]
     pub sender: ::prost::alloc::string::String,
-    #[prost(string, tag="2")]
+    #[prost(string, tag = "2")]
     pub invariant_module_name: ::prost::alloc::string::String,
-    #[prost(string, tag="3")]
+    #[prost(string, tag = "3")]
     pub invariant_route: ::prost::alloc::string::String,
 }
 /// MsgVerifyInvariantResponse defines the Msg/VerifyInvariant response type.
+#[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct MsgVerifyInvariantResponse {
-}
+pub struct MsgVerifyInvariantResponse {}
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
     use tonic::codegen::*;
+    use tonic::codegen::http::Uri;
     /// Msg defines the bank Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -51,6 +45,10 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::new(inner);
             Self { inner }
         }
+        pub fn with_origin(inner: T, origin: Uri) -> Self {
+            let inner = tonic::client::Grpc::with_origin(inner, origin);
+            Self { inner }
+        }
         pub fn with_interceptor<F>(
             inner: T,
             interceptor: F,
@@ -70,19 +68,19 @@ pub mod msg_client {
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
-        /// Compress requests with `gzip`.
+        /// Compress requests with the given encoding.
         ///
         /// This requires the server to support it otherwise it might respond with an
         /// error.
         #[must_use]
-        pub fn send_gzip(mut self) -> Self {
-            self.inner = self.inner.send_gzip();
+        pub fn send_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.send_compressed(encoding);
             self
         }
-        /// Enable decompressing responses with `gzip`.
+        /// Enable decompressing responses.
         #[must_use]
-        pub fn accept_gzip(mut self) -> Self {
-            self.inner = self.inner.accept_gzip();
+        pub fn accept_compressed(mut self, encoding: CompressionEncoding) -> Self {
+            self.inner = self.inner.accept_compressed(encoding);
             self
         }
         /// VerifyInvariant defines a method to verify a particular invariance.
@@ -106,4 +104,13 @@ pub mod msg_client {
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
+}
+/// GenesisState defines the crisis module's genesis state.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct GenesisState {
+    /// constant_fee is the fee used to verify the invariant in the crisis
+    /// module.
+    #[prost(message, optional, tag = "3")]
+    pub constant_fee: ::core::option::Option<super::super::base::v1beta1::Coin>,
 }

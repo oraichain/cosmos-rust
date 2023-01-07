@@ -20,19 +20,19 @@ use walkdir::WalkDir;
 static QUIET: AtomicBool = AtomicBool::new(false);
 
 // The osmosis-labs/bech32-ibc commit or tag to be cloned and used to build the proto files
-const BECH32IBC_REV: &str = "v0.2.0-rc2";
+const BECH32IBC_REV: &str = "v0.3.0-rc1";
 
 /// The Cosmos SDK commit or tag to be cloned and used to build the proto files
-const COSMOS_SDK_REV: &str = "v0.45.2";
+const COSMOS_SDK_REV: &str = "v0.45.11";
 
 /// The Ethermint commit or tag to be cloned and used to build the proto files
-const ETHERMINT_REV: &str = "v0.9.0";
+const ETHERMINT_REV: &str = "v0.19.3";
 
 /// The Tendermint commit or tag to be cloned and used to build the proto files
-const TENDERMINT_REV: &str = "v0.34.17";
+const TENDERMINT_REV: &str = "v0.34.23";
 
 /// The Cosmos ibc-go commit or tag to be cloned and used to build the proto files
-const IBC_REV: &str = "v2.2.0";
+const IBC_REV: &str = "v3.4.0";
 
 /// The wasmd commit or tag to be cloned and used to build the proto files
 const WASMD_REV: &str = "v0.23.0";
@@ -229,14 +229,12 @@ fn compile_bech32ibc_protos_and_services(out_dir: &Path) {
     let proto_includes_paths = [
         format!("{}/../proto", root),
         format!("{}/proto", bech32ibc_dir.display()),
-        format!("{}/third_party/proto", bech32ibc_dir.display()),
+        format!("{}/third_party/proto", COSMOS_SDK_DIR),
         format!("{}/proto/bech32ibc", bech32ibc_dir.display()),
     ];
 
     // Paths
-    let proto_paths = [
-        format!("{}/proto/bech32ibc/", bech32ibc_dir.display()),
-    ];
+    let proto_paths = [format!("{}/proto/bech32ibc/", bech32ibc_dir.display())];
 
     // List available proto files
     let mut protos: Vec<PathBuf> = vec![];
@@ -275,9 +273,7 @@ fn compile_ethermint_protos_and_services(out_dir: &Path) {
     ];
 
     // Paths
-    let proto_paths = [
-        format!("{}/proto/ethermint/", ethermint_dir.display()),
-    ];
+    let proto_paths = [format!("{}/proto/ethermint/", ethermint_dir.display())];
 
     // List available proto files
     let mut protos: Vec<PathBuf> = vec![];
