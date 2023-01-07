@@ -102,9 +102,7 @@ pub struct GetNodeInfoRequest {}
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct GetNodeInfoResponse {
     #[prost(message, optional, tag = "1")]
-    pub default_node_info: ::core::option::Option<
-        crate::tendermint::p2p::DefaultNodeInfo,
-    >,
+    pub default_node_info: ::core::option::Option<crate::tendermint::p2p::DefaultNodeInfo>,
     #[prost(message, optional, tag = "2")]
     pub application_version: ::core::option::Option<VersionInfo>,
 }
@@ -147,8 +145,8 @@ pub struct Module {
 /// Generated client implementations.
 pub mod service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Service defines the gRPC querier service for tendermint queries.
     #[derive(Debug, Clone)]
     pub struct ServiceClient<T> {
@@ -193,9 +191,8 @@ pub mod service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             ServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -219,15 +216,12 @@ pub mod service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetNodeInfoRequest>,
         ) -> Result<tonic::Response<super::GetNodeInfoResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.tendermint.v1beta1.Service/GetNodeInfo",
@@ -239,15 +233,12 @@ pub mod service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetSyncingRequest>,
         ) -> Result<tonic::Response<super::GetSyncingResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.tendermint.v1beta1.Service/GetSyncing",
@@ -259,15 +250,12 @@ pub mod service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetLatestBlockRequest>,
         ) -> Result<tonic::Response<super::GetLatestBlockResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.tendermint.v1beta1.Service/GetLatestBlock",
@@ -279,15 +267,12 @@ pub mod service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetBlockByHeightRequest>,
         ) -> Result<tonic::Response<super::GetBlockByHeightResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.tendermint.v1beta1.Service/GetBlockByHeight",
@@ -298,19 +283,13 @@ pub mod service_client {
         pub async fn get_latest_validator_set(
             &mut self,
             request: impl tonic::IntoRequest<super::GetLatestValidatorSetRequest>,
-        ) -> Result<
-            tonic::Response<super::GetLatestValidatorSetResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::GetLatestValidatorSetResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.tendermint.v1beta1.Service/GetLatestValidatorSet",
@@ -321,19 +300,14 @@ pub mod service_client {
         pub async fn get_validator_set_by_height(
             &mut self,
             request: impl tonic::IntoRequest<super::GetValidatorSetByHeightRequest>,
-        ) -> Result<
-            tonic::Response<super::GetValidatorSetByHeightResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::GetValidatorSetByHeightResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.tendermint.v1beta1.Service/GetValidatorSetByHeight",

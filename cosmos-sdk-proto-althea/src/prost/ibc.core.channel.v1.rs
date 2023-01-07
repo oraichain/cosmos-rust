@@ -473,8 +473,8 @@ impl ResponseResultType {
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Msg defines the ibc/channel Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -506,10 +506,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -519,9 +516,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -545,19 +541,15 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgChannelOpenInit>,
         ) -> Result<tonic::Response<super::MsgChannelOpenInitResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Msg/ChannelOpenInit",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Msg/ChannelOpenInit");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ChannelOpenTry defines a rpc handler method for MsgChannelOpenTry.
@@ -565,19 +557,15 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgChannelOpenTry>,
         ) -> Result<tonic::Response<super::MsgChannelOpenTryResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Msg/ChannelOpenTry",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Msg/ChannelOpenTry");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ChannelOpenAck defines a rpc handler method for MsgChannelOpenAck.
@@ -585,42 +573,31 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgChannelOpenAck>,
         ) -> Result<tonic::Response<super::MsgChannelOpenAckResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Msg/ChannelOpenAck",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Msg/ChannelOpenAck");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ChannelOpenConfirm defines a rpc handler method for MsgChannelOpenConfirm.
         pub async fn channel_open_confirm(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgChannelOpenConfirm>,
-        ) -> Result<
-            tonic::Response<super::MsgChannelOpenConfirmResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::MsgChannelOpenConfirmResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Msg/ChannelOpenConfirm",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Msg/ChannelOpenConfirm");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ChannelCloseInit defines a rpc handler method for MsgChannelCloseInit.
@@ -628,19 +605,15 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgChannelCloseInit>,
         ) -> Result<tonic::Response<super::MsgChannelCloseInitResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Msg/ChannelCloseInit",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Msg/ChannelCloseInit");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ChannelCloseConfirm defines a rpc handler method for
@@ -648,19 +621,13 @@ pub mod msg_client {
         pub async fn channel_close_confirm(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgChannelCloseConfirm>,
-        ) -> Result<
-            tonic::Response<super::MsgChannelCloseConfirmResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::MsgChannelCloseConfirmResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.core.channel.v1.Msg/ChannelCloseConfirm",
@@ -672,19 +639,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgRecvPacket>,
         ) -> Result<tonic::Response<super::MsgRecvPacketResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Msg/RecvPacket",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Msg/RecvPacket");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Timeout defines a rpc handler method for MsgTimeout.
@@ -692,19 +654,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgTimeout>,
         ) -> Result<tonic::Response<super::MsgTimeoutResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Msg/Timeout",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Msg/Timeout");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// TimeoutOnClose defines a rpc handler method for MsgTimeoutOnClose.
@@ -712,19 +669,15 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgTimeoutOnClose>,
         ) -> Result<tonic::Response<super::MsgTimeoutOnCloseResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Msg/TimeoutOnClose",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Msg/TimeoutOnClose");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Acknowledgement defines a rpc handler method for MsgAcknowledgement.
@@ -732,19 +685,15 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgAcknowledgement>,
         ) -> Result<tonic::Response<super::MsgAcknowledgementResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Msg/Acknowledgement",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Msg/Acknowledgement");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -852,9 +801,8 @@ pub struct QueryChannelClientStateRequest {
 pub struct QueryChannelClientStateResponse {
     /// client state associated with the channel
     #[prost(message, optional, tag = "1")]
-    pub identified_client_state: ::core::option::Option<
-        super::super::client::v1::IdentifiedClientState,
-    >,
+    pub identified_client_state:
+        ::core::option::Option<super::super::client::v1::IdentifiedClientState>,
     /// merkle proof of existence
     #[prost(bytes = "vec", tag = "2")]
     pub proof: ::prost::alloc::vec::Vec<u8>,
@@ -1144,8 +1092,8 @@ pub struct QueryNextSequenceReceiveResponse {
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query provides defines the gRPC querier service
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -1190,9 +1138,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -1216,19 +1163,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryChannelRequest>,
         ) -> Result<tonic::Response<super::QueryChannelResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Query/Channel",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Query/Channel");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Channels queries all the IBC channels of a chain.
@@ -1236,19 +1178,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryChannelsRequest>,
         ) -> Result<tonic::Response<super::QueryChannelsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Query/Channels",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Query/Channels");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ConnectionChannels queries all the channels associated with a connection
@@ -1256,19 +1193,14 @@ pub mod query_client {
         pub async fn connection_channels(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryConnectionChannelsRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryConnectionChannelsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryConnectionChannelsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.core.channel.v1.Query/ConnectionChannels",
@@ -1280,19 +1212,14 @@ pub mod query_client {
         pub async fn channel_client_state(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryChannelClientStateRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryChannelClientStateResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryChannelClientStateResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.core.channel.v1.Query/ChannelClientState",
@@ -1304,19 +1231,14 @@ pub mod query_client {
         pub async fn channel_consensus_state(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryChannelConsensusStateRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryChannelConsensusStateResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryChannelConsensusStateResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.core.channel.v1.Query/ChannelConsensusState",
@@ -1327,23 +1249,16 @@ pub mod query_client {
         pub async fn packet_commitment(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryPacketCommitmentRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryPacketCommitmentResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryPacketCommitmentResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Query/PacketCommitment",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Query/PacketCommitment");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// PacketCommitments returns all the packet commitments hashes associated
@@ -1351,19 +1266,13 @@ pub mod query_client {
         pub async fn packet_commitments(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryPacketCommitmentsRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryPacketCommitmentsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryPacketCommitmentsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.core.channel.v1.Query/PacketCommitments",
@@ -1376,38 +1285,29 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryPacketReceiptRequest>,
         ) -> Result<tonic::Response<super::QueryPacketReceiptResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Query/PacketReceipt",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Query/PacketReceipt");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// PacketAcknowledgement queries a stored packet acknowledgement hash.
         pub async fn packet_acknowledgement(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryPacketAcknowledgementRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryPacketAcknowledgementResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryPacketAcknowledgementResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.core.channel.v1.Query/PacketAcknowledgement",
@@ -1419,19 +1319,14 @@ pub mod query_client {
         pub async fn packet_acknowledgements(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryPacketAcknowledgementsRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryPacketAcknowledgementsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryPacketAcknowledgementsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.core.channel.v1.Query/PacketAcknowledgements",
@@ -1443,19 +1338,13 @@ pub mod query_client {
         pub async fn unreceived_packets(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryUnreceivedPacketsRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryUnreceivedPacketsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryUnreceivedPacketsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.core.channel.v1.Query/UnreceivedPackets",
@@ -1468,38 +1357,29 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryUnreceivedAcksRequest>,
         ) -> Result<tonic::Response<super::QueryUnreceivedAcksResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.channel.v1.Query/UnreceivedAcks",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.channel.v1.Query/UnreceivedAcks");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// NextSequenceReceive returns the next receive sequence for a given channel.
         pub async fn next_sequence_receive(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryNextSequenceReceiveRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryNextSequenceReceiveResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryNextSequenceReceiveResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.core.channel.v1.Query/NextSequenceReceive",

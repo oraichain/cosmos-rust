@@ -156,9 +156,8 @@ pub mod mode_info {
     pub struct Multi {
         /// bitarray specifies which keys within the multisig are signing
         #[prost(message, optional, tag = "1")]
-        pub bitarray: ::core::option::Option<
-            super::super::super::crypto::multisig::v1beta1::CompactBitArray,
-        >,
+        pub bitarray:
+            ::core::option::Option<super::super::super::crypto::multisig::v1beta1::CompactBitArray>,
         /// mode_infos is the corresponding modes of the signers of the multisig
         /// which could include nested multisig public keys
         #[prost(message, repeated, tag = "2")]
@@ -211,9 +210,7 @@ pub struct GetTxsEventRequest {
     pub events: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// pagination defines a pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
     #[prost(enumeration = "OrderBy", tag = "3")]
     pub order_by: i32,
 }
@@ -227,14 +224,10 @@ pub struct GetTxsEventResponse {
     pub txs: ::prost::alloc::vec::Vec<Tx>,
     /// tx_responses is the list of queried TxResponses.
     #[prost(message, repeated, tag = "2")]
-    pub tx_responses: ::prost::alloc::vec::Vec<
-        super::super::base::abci::v1beta1::TxResponse,
-    >,
+    pub tx_responses: ::prost::alloc::vec::Vec<super::super::base::abci::v1beta1::TxResponse>,
     /// pagination defines a pagination for the response.
     #[prost(message, optional, tag = "3")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// BroadcastTxRequest is the request type for the Service.BroadcastTxRequest
 /// RPC method.
@@ -254,9 +247,7 @@ pub struct BroadcastTxRequest {
 pub struct BroadcastTxResponse {
     /// tx_response is the queried TxResponses.
     #[prost(message, optional, tag = "1")]
-    pub tx_response: ::core::option::Option<
-        super::super::base::abci::v1beta1::TxResponse,
-    >,
+    pub tx_response: ::core::option::Option<super::super::base::abci::v1beta1::TxResponse>,
 }
 /// SimulateRequest is the request type for the Service.Simulate
 /// RPC method.
@@ -304,9 +295,7 @@ pub struct GetTxResponse {
     pub tx: ::core::option::Option<Tx>,
     /// tx_response is the queried TxResponses.
     #[prost(message, optional, tag = "2")]
-    pub tx_response: ::core::option::Option<
-        super::super::base::abci::v1beta1::TxResponse,
-    >,
+    pub tx_response: ::core::option::Option<super::super::base::abci::v1beta1::TxResponse>,
 }
 /// GetBlockWithTxsRequest is the request type for the Service.GetBlockWithTxs
 /// RPC method.
@@ -320,9 +309,7 @@ pub struct GetBlockWithTxsRequest {
     pub height: i64,
     /// pagination defines a pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// GetBlockWithTxsResponse is the response type for the Service.GetBlockWithTxs method.
 ///
@@ -339,9 +326,7 @@ pub struct GetBlockWithTxsResponse {
     pub block: ::core::option::Option<crate::tendermint::types::Block>,
     /// pagination defines a pagination for the response.
     #[prost(message, optional, tag = "4")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// OrderBy defines the sorting order
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
@@ -419,8 +404,8 @@ impl BroadcastMode {
 /// Generated client implementations.
 pub mod service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Service defines a gRPC service for interacting with transactions.
     #[derive(Debug, Clone)]
     pub struct ServiceClient<T> {
@@ -465,9 +450,8 @@ pub mod service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             ServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -491,19 +475,14 @@ pub mod service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::SimulateRequest>,
         ) -> Result<tonic::Response<super::SimulateResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.tx.v1beta1.Service/Simulate",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.tx.v1beta1.Service/Simulate");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// GetTx fetches a tx by hash.
@@ -511,19 +490,14 @@ pub mod service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTxRequest>,
         ) -> Result<tonic::Response<super::GetTxResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.tx.v1beta1.Service/GetTx",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.tx.v1beta1.Service/GetTx");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// BroadcastTx broadcast transaction.
@@ -531,19 +505,15 @@ pub mod service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::BroadcastTxRequest>,
         ) -> Result<tonic::Response<super::BroadcastTxResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.tx.v1beta1.Service/BroadcastTx",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.tx.v1beta1.Service/BroadcastTx");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// GetTxsEvent fetches txs by event.
@@ -551,19 +521,15 @@ pub mod service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTxsEventRequest>,
         ) -> Result<tonic::Response<super::GetTxsEventResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.tx.v1beta1.Service/GetTxsEvent",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.tx.v1beta1.Service/GetTxsEvent");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// GetBlockWithTxs fetches a block with decoded txs.
@@ -573,19 +539,15 @@ pub mod service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetBlockWithTxsRequest>,
         ) -> Result<tonic::Response<super::GetBlockWithTxsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.tx.v1beta1.Service/GetBlockWithTxs",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.tx.v1beta1.Service/GetBlockWithTxs");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

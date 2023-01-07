@@ -74,8 +74,8 @@ pub struct QueryAnnualProvisionsResponse {
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query provides defines the gRPC querier service.
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -120,9 +120,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -146,19 +145,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
         ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.mint.v1beta1.Query/Params",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.mint.v1beta1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Inflation returns the current minting inflation value.
@@ -166,42 +160,30 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryInflationRequest>,
         ) -> Result<tonic::Response<super::QueryInflationResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.mint.v1beta1.Query/Inflation",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.mint.v1beta1.Query/Inflation");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// AnnualProvisions current minting annual provisions value.
         pub async fn annual_provisions(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAnnualProvisionsRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryAnnualProvisionsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryAnnualProvisionsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.mint.v1beta1.Query/AnnualProvisions",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.mint.v1beta1.Query/AnnualProvisions");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

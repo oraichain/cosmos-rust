@@ -12,9 +12,7 @@ pub struct MsgTransfer {
     pub source_channel: ::prost::alloc::string::String,
     /// the tokens to be transferred
     #[prost(message, optional, tag = "3")]
-    pub token: ::core::option::Option<
-        super::super::super::super::cosmos::base::v1beta1::Coin,
-    >,
+    pub token: ::core::option::Option<super::super::super::super::cosmos::base::v1beta1::Coin>,
     /// the sender address
     #[prost(string, tag = "4")]
     pub sender: ::prost::alloc::string::String,
@@ -24,9 +22,7 @@ pub struct MsgTransfer {
     /// Timeout height relative to the current block height.
     /// The timeout is disabled when set to 0.
     #[prost(message, optional, tag = "6")]
-    pub timeout_height: ::core::option::Option<
-        super::super::super::core::client::v1::Height,
-    >,
+    pub timeout_height: ::core::option::Option<super::super::super::core::client::v1::Height>,
     /// Timeout timestamp in absolute nanoseconds since unix epoch.
     /// The timeout is disabled when set to 0.
     #[prost(uint64, tag = "7")]
@@ -46,8 +42,8 @@ pub struct MsgTransferResponse {
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Msg defines the ibc/transfer Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -79,10 +75,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -92,9 +85,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -118,19 +110,15 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgTransfer>,
         ) -> Result<tonic::Response<super::MsgTransferResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.applications.transfer.v1.Msg/Transfer",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.applications.transfer.v1.Msg/Transfer");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -259,8 +247,8 @@ pub struct QueryEscrowAddressResponse {
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query provides defines the gRPC querier service.
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -305,9 +293,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -331,15 +318,12 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDenomTraceRequest>,
         ) -> Result<tonic::Response<super::QueryDenomTraceResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.applications.transfer.v1.Query/DenomTrace",
@@ -351,15 +335,12 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDenomTracesRequest>,
         ) -> Result<tonic::Response<super::QueryDenomTracesResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.applications.transfer.v1.Query/DenomTraces",
@@ -371,19 +352,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
         ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.applications.transfer.v1.Query/Params",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.applications.transfer.v1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// DenomHash queries a denomination hash information.
@@ -391,15 +368,12 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDenomHashRequest>,
         ) -> Result<tonic::Response<super::QueryDenomHashResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.applications.transfer.v1.Query/DenomHash",
@@ -411,15 +385,12 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryEscrowAddressRequest>,
         ) -> Result<tonic::Response<super::QueryEscrowAddressResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.applications.transfer.v1.Query/EscrowAddress",

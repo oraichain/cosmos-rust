@@ -65,9 +65,7 @@ pub struct UpgradeProposal {
     #[prost(string, tag = "2")]
     pub description: ::prost::alloc::string::String,
     #[prost(message, optional, tag = "3")]
-    pub plan: ::core::option::Option<
-        super::super::super::super::cosmos::upgrade::v1beta1::Plan,
-    >,
+    pub plan: ::core::option::Option<super::super::super::super::cosmos::upgrade::v1beta1::Plan>,
     /// An UpgradedClientState must be provided to perform an IBC breaking upgrade.
     /// This will make the chain commit to the correct upgraded (self) client state
     /// before the upgrade occurs, so that connecting chains can verify that the
@@ -195,8 +193,8 @@ pub struct MsgSubmitMisbehaviourResponse {}
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Msg defines the ibc/client Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -228,10 +226,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -241,9 +236,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -267,19 +261,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgCreateClient>,
         ) -> Result<tonic::Response<super::MsgCreateClientResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.client.v1.Msg/CreateClient",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ibc.core.client.v1.Msg/CreateClient");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// UpdateClient defines a rpc handler method for MsgUpdateClient.
@@ -287,19 +276,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgUpdateClient>,
         ) -> Result<tonic::Response<super::MsgUpdateClientResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.client.v1.Msg/UpdateClient",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ibc.core.client.v1.Msg/UpdateClient");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// UpgradeClient defines a rpc handler method for MsgUpgradeClient.
@@ -307,42 +291,31 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgUpgradeClient>,
         ) -> Result<tonic::Response<super::MsgUpgradeClientResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.client.v1.Msg/UpgradeClient",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.client.v1.Msg/UpgradeClient");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// SubmitMisbehaviour defines a rpc handler method for MsgSubmitMisbehaviour.
         pub async fn submit_misbehaviour(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSubmitMisbehaviour>,
-        ) -> Result<
-            tonic::Response<super::MsgSubmitMisbehaviourResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::MsgSubmitMisbehaviourResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.client.v1.Msg/SubmitMisbehaviour",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.client.v1.Msg/SubmitMisbehaviour");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -550,8 +523,8 @@ pub struct QueryUpgradedConsensusStateResponse {
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query provides defines the gRPC querier service
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -596,9 +569,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -622,19 +594,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryClientStateRequest>,
         ) -> Result<tonic::Response<super::QueryClientStateResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.client.v1.Query/ClientState",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.client.v1.Query/ClientState");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ClientStates queries all the IBC light clients of a chain.
@@ -642,19 +610,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryClientStatesRequest>,
         ) -> Result<tonic::Response<super::QueryClientStatesResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.client.v1.Query/ClientStates",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.client.v1.Query/ClientStates");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ConsensusState queries a consensus state associated with a client state at
@@ -663,19 +627,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryConsensusStateRequest>,
         ) -> Result<tonic::Response<super::QueryConsensusStateResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.client.v1.Query/ConsensusState",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.client.v1.Query/ConsensusState");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ConsensusStates queries all the consensus state associated with a given
@@ -683,42 +643,30 @@ pub mod query_client {
         pub async fn consensus_states(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryConsensusStatesRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryConsensusStatesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryConsensusStatesResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.client.v1.Query/ConsensusStates",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.client.v1.Query/ConsensusStates");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ConsensusStateHeights queries the height of every consensus states associated with a given client.
         pub async fn consensus_state_heights(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryConsensusStateHeightsRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryConsensusStateHeightsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryConsensusStateHeightsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.core.client.v1.Query/ConsensusStateHeights",
@@ -730,19 +678,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryClientStatusRequest>,
         ) -> Result<tonic::Response<super::QueryClientStatusResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.client.v1.Query/ClientStatus",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.client.v1.Query/ClientStatus");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ClientParams queries all parameters of the ibc client.
@@ -750,38 +694,29 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryClientParamsRequest>,
         ) -> Result<tonic::Response<super::QueryClientParamsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ibc.core.client.v1.Query/ClientParams",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ibc.core.client.v1.Query/ClientParams");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// UpgradedClientState queries an Upgraded IBC light client.
         pub async fn upgraded_client_state(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryUpgradedClientStateRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryUpgradedClientStateResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryUpgradedClientStateResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.core.client.v1.Query/UpgradedClientState",
@@ -792,19 +727,14 @@ pub mod query_client {
         pub async fn upgraded_consensus_state(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryUpgradedConsensusStateRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryUpgradedConsensusStateResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryUpgradedConsensusStateResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/ibc.core.client.v1.Query/UpgradedConsensusState",

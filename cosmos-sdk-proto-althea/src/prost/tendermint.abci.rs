@@ -390,17 +390,7 @@ pub struct ResponseOfferSnapshot {
 }
 /// Nested message and enum types in `ResponseOfferSnapshot`.
 pub mod response_offer_snapshot {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
     #[repr(i32)]
     pub enum Result {
         /// Unknown result, abort all snapshot restoration
@@ -465,17 +455,7 @@ pub struct ResponseApplySnapshotChunk {
 }
 /// Nested message and enum types in `ResponseApplySnapshotChunk`.
 pub mod response_apply_snapshot_chunk {
-    #[derive(
-        Clone,
-        Copy,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash,
-        PartialOrd,
-        Ord,
-        ::prost::Enumeration
-    )]
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, ::prost::Enumeration)]
     #[repr(i32)]
     pub enum Result {
         /// Unknown result, abort all snapshot restoration
@@ -719,8 +699,8 @@ impl EvidenceType {
 /// Generated client implementations.
 pub mod abci_application_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     #[derive(Debug, Clone)]
     pub struct AbciApplicationClient<T> {
         inner: tonic::client::Grpc<T>,
@@ -764,9 +744,8 @@ pub mod abci_application_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             AbciApplicationClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -789,224 +768,177 @@ pub mod abci_application_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RequestEcho>,
         ) -> Result<tonic::Response<super::ResponseEcho>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/tendermint.abci.ABCIApplication/Echo",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/tendermint.abci.ABCIApplication/Echo");
             self.inner.unary(request.into_request(), path, codec).await
         }
         pub async fn flush(
             &mut self,
             request: impl tonic::IntoRequest<super::RequestFlush>,
         ) -> Result<tonic::Response<super::ResponseFlush>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/tendermint.abci.ABCIApplication/Flush",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/tendermint.abci.ABCIApplication/Flush");
             self.inner.unary(request.into_request(), path, codec).await
         }
         pub async fn info(
             &mut self,
             request: impl tonic::IntoRequest<super::RequestInfo>,
         ) -> Result<tonic::Response<super::ResponseInfo>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/tendermint.abci.ABCIApplication/Info",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/tendermint.abci.ABCIApplication/Info");
             self.inner.unary(request.into_request(), path, codec).await
         }
         pub async fn set_option(
             &mut self,
             request: impl tonic::IntoRequest<super::RequestSetOption>,
         ) -> Result<tonic::Response<super::ResponseSetOption>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/tendermint.abci.ABCIApplication/SetOption",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/tendermint.abci.ABCIApplication/SetOption");
             self.inner.unary(request.into_request(), path, codec).await
         }
         pub async fn deliver_tx(
             &mut self,
             request: impl tonic::IntoRequest<super::RequestDeliverTx>,
         ) -> Result<tonic::Response<super::ResponseDeliverTx>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/tendermint.abci.ABCIApplication/DeliverTx",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/tendermint.abci.ABCIApplication/DeliverTx");
             self.inner.unary(request.into_request(), path, codec).await
         }
         pub async fn check_tx(
             &mut self,
             request: impl tonic::IntoRequest<super::RequestCheckTx>,
         ) -> Result<tonic::Response<super::ResponseCheckTx>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/tendermint.abci.ABCIApplication/CheckTx",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/tendermint.abci.ABCIApplication/CheckTx");
             self.inner.unary(request.into_request(), path, codec).await
         }
         pub async fn query(
             &mut self,
             request: impl tonic::IntoRequest<super::RequestQuery>,
         ) -> Result<tonic::Response<super::ResponseQuery>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/tendermint.abci.ABCIApplication/Query",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/tendermint.abci.ABCIApplication/Query");
             self.inner.unary(request.into_request(), path, codec).await
         }
         pub async fn commit(
             &mut self,
             request: impl tonic::IntoRequest<super::RequestCommit>,
         ) -> Result<tonic::Response<super::ResponseCommit>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/tendermint.abci.ABCIApplication/Commit",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/tendermint.abci.ABCIApplication/Commit");
             self.inner.unary(request.into_request(), path, codec).await
         }
         pub async fn init_chain(
             &mut self,
             request: impl tonic::IntoRequest<super::RequestInitChain>,
         ) -> Result<tonic::Response<super::ResponseInitChain>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/tendermint.abci.ABCIApplication/InitChain",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/tendermint.abci.ABCIApplication/InitChain");
             self.inner.unary(request.into_request(), path, codec).await
         }
         pub async fn begin_block(
             &mut self,
             request: impl tonic::IntoRequest<super::RequestBeginBlock>,
         ) -> Result<tonic::Response<super::ResponseBeginBlock>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/tendermint.abci.ABCIApplication/BeginBlock",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/tendermint.abci.ABCIApplication/BeginBlock");
             self.inner.unary(request.into_request(), path, codec).await
         }
         pub async fn end_block(
             &mut self,
             request: impl tonic::IntoRequest<super::RequestEndBlock>,
         ) -> Result<tonic::Response<super::ResponseEndBlock>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/tendermint.abci.ABCIApplication/EndBlock",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/tendermint.abci.ABCIApplication/EndBlock");
             self.inner.unary(request.into_request(), path, codec).await
         }
         pub async fn list_snapshots(
             &mut self,
             request: impl tonic::IntoRequest<super::RequestListSnapshots>,
         ) -> Result<tonic::Response<super::ResponseListSnapshots>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/tendermint.abci.ABCIApplication/ListSnapshots",
@@ -1017,15 +949,12 @@ pub mod abci_application_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RequestOfferSnapshot>,
         ) -> Result<tonic::Response<super::ResponseOfferSnapshot>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/tendermint.abci.ABCIApplication/OfferSnapshot",
@@ -1036,15 +965,12 @@ pub mod abci_application_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RequestLoadSnapshotChunk>,
         ) -> Result<tonic::Response<super::ResponseLoadSnapshotChunk>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/tendermint.abci.ABCIApplication/LoadSnapshotChunk",
@@ -1055,15 +981,12 @@ pub mod abci_application_client {
             &mut self,
             request: impl tonic::IntoRequest<super::RequestApplySnapshotChunk>,
         ) -> Result<tonic::Response<super::ResponseApplySnapshotChunk>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/tendermint.abci.ABCIApplication/ApplySnapshotChunk",

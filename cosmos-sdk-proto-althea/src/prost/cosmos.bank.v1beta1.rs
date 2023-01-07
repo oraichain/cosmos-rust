@@ -123,8 +123,8 @@ pub struct MsgMultiSendResponse {}
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Msg defines the bank Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -156,10 +156,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -169,9 +166,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -195,19 +191,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSend>,
         ) -> Result<tonic::Response<super::MsgSendResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.bank.v1beta1.Msg/Send",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.bank.v1beta1.Msg/Send");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// MultiSend defines a method for sending coins from some accounts to other accounts.
@@ -215,19 +206,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgMultiSend>,
         ) -> Result<tonic::Response<super::MsgMultiSendResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.bank.v1beta1.Msg/MultiSend",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.bank.v1beta1.Msg/MultiSend");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -260,9 +246,7 @@ pub struct QueryAllBalancesRequest {
     pub address: ::prost::alloc::string::String,
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryAllBalancesResponse is the response type for the Query/AllBalances RPC
 /// method.
@@ -274,9 +258,7 @@ pub struct QueryAllBalancesResponse {
     pub balances: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// QuerySpendableBalancesRequest defines the gRPC request structure for querying
 /// an account's spendable balances.
@@ -288,9 +270,7 @@ pub struct QuerySpendableBalancesRequest {
     pub address: ::prost::alloc::string::String,
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QuerySpendableBalancesResponse defines the gRPC response structure for querying
 /// an account's spendable balances.
@@ -302,9 +282,7 @@ pub struct QuerySpendableBalancesResponse {
     pub balances: ::prost::alloc::vec::Vec<super::super::base::v1beta1::Coin>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// QueryTotalSupplyRequest is the request type for the Query/TotalSupply RPC
 /// method.
@@ -315,9 +293,7 @@ pub struct QueryTotalSupplyRequest {
     ///
     /// Since: cosmos-sdk 0.43
     #[prost(message, optional, tag = "1")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryTotalSupplyResponse is the response type for the Query/TotalSupply RPC
 /// method
@@ -331,9 +307,7 @@ pub struct QueryTotalSupplyResponse {
     ///
     /// Since: cosmos-sdk 0.43
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// QuerySupplyOfRequest is the request type for the Query/SupplyOf RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -368,9 +342,7 @@ pub struct QueryParamsResponse {
 pub struct QueryDenomsMetadataRequest {
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "1")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryDenomsMetadataResponse is the response type for the Query/DenomsMetadata RPC
 /// method.
@@ -382,9 +354,7 @@ pub struct QueryDenomsMetadataResponse {
     pub metadatas: ::prost::alloc::vec::Vec<Metadata>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// QueryDenomMetadataRequest is the request type for the Query/DenomMetadata RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -406,8 +376,8 @@ pub struct QueryDenomMetadataResponse {
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query defines the gRPC querier service.
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -452,9 +422,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -478,19 +447,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryBalanceRequest>,
         ) -> Result<tonic::Response<super::QueryBalanceResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.bank.v1beta1.Query/Balance",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.bank.v1beta1.Query/Balance");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// AllBalances queries the balance of all coins for a single account.
@@ -498,19 +462,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllBalancesRequest>,
         ) -> Result<tonic::Response<super::QueryAllBalancesResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.bank.v1beta1.Query/AllBalances",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.bank.v1beta1.Query/AllBalances");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// SpendableBalances queries the spenable balance of all coins for a single
@@ -518,19 +478,13 @@ pub mod query_client {
         pub async fn spendable_balances(
             &mut self,
             request: impl tonic::IntoRequest<super::QuerySpendableBalancesRequest>,
-        ) -> Result<
-            tonic::Response<super::QuerySpendableBalancesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QuerySpendableBalancesResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.bank.v1beta1.Query/SpendableBalances",
@@ -542,19 +496,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryTotalSupplyRequest>,
         ) -> Result<tonic::Response<super::QueryTotalSupplyResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.bank.v1beta1.Query/TotalSupply",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.bank.v1beta1.Query/TotalSupply");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// SupplyOf queries the supply of a single coin.
@@ -562,19 +512,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QuerySupplyOfRequest>,
         ) -> Result<tonic::Response<super::QuerySupplyOfResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.bank.v1beta1.Query/SupplyOf",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.bank.v1beta1.Query/SupplyOf");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Params queries the parameters of x/bank module.
@@ -582,19 +527,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
         ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.bank.v1beta1.Query/Params",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.bank.v1beta1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// DenomsMetadata queries the client metadata of a given coin denomination.
@@ -602,19 +542,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDenomMetadataRequest>,
         ) -> Result<tonic::Response<super::QueryDenomMetadataResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.bank.v1beta1.Query/DenomMetadata",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.bank.v1beta1.Query/DenomMetadata");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// DenomsMetadata queries the client metadata for all registered coin denominations.
@@ -622,19 +558,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDenomsMetadataRequest>,
         ) -> Result<tonic::Response<super::QueryDenomsMetadataResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.bank.v1beta1.Query/DenomsMetadata",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.bank.v1beta1.Query/DenomsMetadata");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

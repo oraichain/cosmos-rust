@@ -35,8 +35,8 @@ pub struct MsgRevokeAllowanceResponse {}
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Msg defines the feegrant msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -68,10 +68,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -81,9 +78,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -108,19 +104,15 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgGrantAllowance>,
         ) -> Result<tonic::Response<super::MsgGrantAllowanceResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.feegrant.v1beta1.Msg/GrantAllowance",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.feegrant.v1beta1.Msg/GrantAllowance");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// RevokeAllowance revokes any fee allowance of granter's account that
@@ -129,15 +121,12 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgRevokeAllowance>,
         ) -> Result<tonic::Response<super::MsgRevokeAllowanceResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.feegrant.v1beta1.Msg/RevokeAllowance",
@@ -237,9 +226,7 @@ pub struct QueryAllowancesRequest {
     pub grantee: ::prost::alloc::string::String,
     /// pagination defines an pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryAllowancesResponse is the response type for the Query/Allowances RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -250,9 +237,7 @@ pub struct QueryAllowancesResponse {
     pub allowances: ::prost::alloc::vec::Vec<Grant>,
     /// pagination defines an pagination for the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// QueryAllowancesByGranterRequest is the request type for the Query/AllowancesByGranter RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -262,9 +247,7 @@ pub struct QueryAllowancesByGranterRequest {
     pub granter: ::prost::alloc::string::String,
     /// pagination defines an pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryAllowancesByGranterResponse is the response type for the Query/AllowancesByGranter RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -275,15 +258,13 @@ pub struct QueryAllowancesByGranterResponse {
     pub allowances: ::prost::alloc::vec::Vec<Grant>,
     /// pagination defines an pagination for the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query defines the gRPC querier service.
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -328,9 +309,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -354,19 +334,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllowanceRequest>,
         ) -> Result<tonic::Response<super::QueryAllowanceResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.feegrant.v1beta1.Query/Allowance",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.feegrant.v1beta1.Query/Allowance");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Allowances returns all the grants for address.
@@ -374,19 +350,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllowancesRequest>,
         ) -> Result<tonic::Response<super::QueryAllowancesResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.feegrant.v1beta1.Query/Allowances",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.feegrant.v1beta1.Query/Allowances");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// AllowancesByGranter returns all the grants given by an address
@@ -394,19 +366,14 @@ pub mod query_client {
         pub async fn allowances_by_granter(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllowancesByGranterRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryAllowancesByGranterResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryAllowancesByGranterResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.feegrant.v1beta1.Query/AllowancesByGranter",

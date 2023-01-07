@@ -55,8 +55,8 @@ pub struct MsgFundCommunityPoolResponse {}
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Msg defines the distribution Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -88,10 +88,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -101,9 +98,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -127,19 +123,13 @@ pub mod msg_client {
         pub async fn set_withdraw_address(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSetWithdrawAddress>,
-        ) -> Result<
-            tonic::Response<super::MsgSetWithdrawAddressResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::MsgSetWithdrawAddressResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.distribution.v1beta1.Msg/SetWithdrawAddress",
@@ -151,19 +141,14 @@ pub mod msg_client {
         pub async fn withdraw_delegator_reward(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgWithdrawDelegatorReward>,
-        ) -> Result<
-            tonic::Response<super::MsgWithdrawDelegatorRewardResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::MsgWithdrawDelegatorRewardResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.distribution.v1beta1.Msg/WithdrawDelegatorReward",
@@ -175,19 +160,14 @@ pub mod msg_client {
         pub async fn withdraw_validator_commission(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgWithdrawValidatorCommission>,
-        ) -> Result<
-            tonic::Response<super::MsgWithdrawValidatorCommissionResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::MsgWithdrawValidatorCommissionResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.distribution.v1beta1.Msg/WithdrawValidatorCommission",
@@ -199,19 +179,13 @@ pub mod msg_client {
         pub async fn fund_community_pool(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgFundCommunityPool>,
-        ) -> Result<
-            tonic::Response<super::MsgFundCommunityPoolResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::MsgFundCommunityPoolResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.distribution.v1beta1.Msg/FundCommunityPool",
@@ -249,9 +223,7 @@ pub struct Params {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ValidatorHistoricalRewards {
     #[prost(message, repeated, tag = "1")]
-    pub cumulative_reward_ratio: ::prost::alloc::vec::Vec<
-        super::super::base::v1beta1::DecCoin,
-    >,
+    pub cumulative_reward_ratio: ::prost::alloc::vec::Vec<super::super::base::v1beta1::DecCoin>,
     #[prost(uint32, tag = "2")]
     pub reference_count: u32,
 }
@@ -428,9 +400,7 @@ pub struct QueryValidatorSlashesRequest {
     pub ending_height: u64,
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "4")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryValidatorSlashesResponse is the response type for the
 /// Query/ValidatorSlashes RPC method.
@@ -442,9 +412,7 @@ pub struct QueryValidatorSlashesResponse {
     pub slashes: ::prost::alloc::vec::Vec<ValidatorSlashEvent>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// QueryDelegationRewardsRequest is the request type for the
 /// Query/DelegationRewards RPC method.
@@ -541,8 +509,8 @@ pub struct QueryCommunityPoolResponse {
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query defines the gRPC querier service for distribution module.
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -587,9 +555,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -613,40 +580,29 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
         ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.distribution.v1beta1.Query/Params",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.distribution.v1beta1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ValidatorOutstandingRewards queries rewards of a validator address.
         pub async fn validator_outstanding_rewards(
             &mut self,
-            request: impl tonic::IntoRequest<
-                super::QueryValidatorOutstandingRewardsRequest,
-            >,
-        ) -> Result<
-            tonic::Response<super::QueryValidatorOutstandingRewardsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            request: impl tonic::IntoRequest<super::QueryValidatorOutstandingRewardsRequest>,
+        ) -> Result<tonic::Response<super::QueryValidatorOutstandingRewardsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.distribution.v1beta1.Query/ValidatorOutstandingRewards",
@@ -657,19 +613,14 @@ pub mod query_client {
         pub async fn validator_commission(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryValidatorCommissionRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryValidatorCommissionResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryValidatorCommissionResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.distribution.v1beta1.Query/ValidatorCommission",
@@ -680,19 +631,13 @@ pub mod query_client {
         pub async fn validator_slashes(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryValidatorSlashesRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryValidatorSlashesResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryValidatorSlashesResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.distribution.v1beta1.Query/ValidatorSlashes",
@@ -703,19 +648,13 @@ pub mod query_client {
         pub async fn delegation_rewards(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDelegationRewardsRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryDelegationRewardsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryDelegationRewardsResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.distribution.v1beta1.Query/DelegationRewards",
@@ -727,19 +666,14 @@ pub mod query_client {
         pub async fn delegation_total_rewards(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDelegationTotalRewardsRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryDelegationTotalRewardsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryDelegationTotalRewardsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.distribution.v1beta1.Query/DelegationTotalRewards",
@@ -750,19 +684,14 @@ pub mod query_client {
         pub async fn delegator_validators(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDelegatorValidatorsRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryDelegatorValidatorsResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryDelegatorValidatorsResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.distribution.v1beta1.Query/DelegatorValidators",
@@ -773,19 +702,14 @@ pub mod query_client {
         pub async fn delegator_withdraw_address(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDelegatorWithdrawAddressRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryDelegatorWithdrawAddressResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryDelegatorWithdrawAddressResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.distribution.v1beta1.Query/DelegatorWithdrawAddress",
@@ -797,15 +721,12 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryCommunityPoolRequest>,
         ) -> Result<tonic::Response<super::QueryCommunityPoolResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.distribution.v1beta1.Query/CommunityPool",
@@ -836,9 +757,7 @@ pub struct ValidatorOutstandingRewardsRecord {
     pub validator_address: ::prost::alloc::string::String,
     /// outstanding_rewards represents the oustanding rewards of a validator.
     #[prost(message, repeated, tag = "2")]
-    pub outstanding_rewards: ::prost::alloc::vec::Vec<
-        super::super::base::v1beta1::DecCoin,
-    >,
+    pub outstanding_rewards: ::prost::alloc::vec::Vec<super::super::base::v1beta1::DecCoin>,
 }
 /// ValidatorAccumulatedCommissionRecord is used for import / export via genesis
 /// json.
@@ -930,19 +849,14 @@ pub struct GenesisState {
     pub outstanding_rewards: ::prost::alloc::vec::Vec<ValidatorOutstandingRewardsRecord>,
     /// fee_pool defines the accumulated commisions of all validators at genesis.
     #[prost(message, repeated, tag = "6")]
-    pub validator_accumulated_commissions: ::prost::alloc::vec::Vec<
-        ValidatorAccumulatedCommissionRecord,
-    >,
+    pub validator_accumulated_commissions:
+        ::prost::alloc::vec::Vec<ValidatorAccumulatedCommissionRecord>,
     /// fee_pool defines the historical rewards of all validators at genesis.
     #[prost(message, repeated, tag = "7")]
-    pub validator_historical_rewards: ::prost::alloc::vec::Vec<
-        ValidatorHistoricalRewardsRecord,
-    >,
+    pub validator_historical_rewards: ::prost::alloc::vec::Vec<ValidatorHistoricalRewardsRecord>,
     /// fee_pool defines the current rewards of all validators at genesis.
     #[prost(message, repeated, tag = "8")]
-    pub validator_current_rewards: ::prost::alloc::vec::Vec<
-        ValidatorCurrentRewardsRecord,
-    >,
+    pub validator_current_rewards: ::prost::alloc::vec::Vec<ValidatorCurrentRewardsRecord>,
     /// fee_pool defines the delegator starting infos at genesis.
     #[prost(message, repeated, tag = "9")]
     pub delegator_starting_infos: ::prost::alloc::vec::Vec<DelegatorStartingInfoRecord>,

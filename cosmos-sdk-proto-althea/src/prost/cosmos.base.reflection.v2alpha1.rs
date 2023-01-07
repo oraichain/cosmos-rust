@@ -88,9 +88,7 @@ pub struct InterfaceDescriptor {
     /// interface_accepting_messages contains information regarding the proto messages which contain the interface as
     /// google.protobuf.Any field
     #[prost(message, repeated, tag = "2")]
-    pub interface_accepting_messages: ::prost::alloc::vec::Vec<
-        InterfaceAcceptingMessageDescriptor,
-    >,
+    pub interface_accepting_messages: ::prost::alloc::vec::Vec<InterfaceAcceptingMessageDescriptor>,
     /// interface_implementers is a list of the descriptors of the interface implementers
     #[prost(message, repeated, tag = "3")]
     pub interface_implementers: ::prost::alloc::vec::Vec<InterfaceImplementerDescriptor>,
@@ -251,8 +249,8 @@ pub struct QueryMethodDescriptor {
 /// Generated client implementations.
 pub mod reflection_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// ReflectionService defines a service for application reflection.
     #[derive(Debug, Clone)]
     pub struct ReflectionServiceClient<T> {
@@ -297,9 +295,8 @@ pub mod reflection_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             ReflectionServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -325,15 +322,12 @@ pub mod reflection_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetAuthnDescriptorRequest>,
         ) -> Result<tonic::Response<super::GetAuthnDescriptorResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.reflection.v2alpha1.ReflectionService/GetAuthnDescriptor",
@@ -345,15 +339,12 @@ pub mod reflection_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetChainDescriptorRequest>,
         ) -> Result<tonic::Response<super::GetChainDescriptorResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.reflection.v2alpha1.ReflectionService/GetChainDescriptor",
@@ -365,15 +356,12 @@ pub mod reflection_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetCodecDescriptorRequest>,
         ) -> Result<tonic::Response<super::GetCodecDescriptorResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.reflection.v2alpha1.ReflectionService/GetCodecDescriptor",
@@ -384,19 +372,14 @@ pub mod reflection_service_client {
         pub async fn get_configuration_descriptor(
             &mut self,
             request: impl tonic::IntoRequest<super::GetConfigurationDescriptorRequest>,
-        ) -> Result<
-            tonic::Response<super::GetConfigurationDescriptorResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::GetConfigurationDescriptorResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.reflection.v2alpha1.ReflectionService/GetConfigurationDescriptor",
@@ -407,19 +390,14 @@ pub mod reflection_service_client {
         pub async fn get_query_services_descriptor(
             &mut self,
             request: impl tonic::IntoRequest<super::GetQueryServicesDescriptorRequest>,
-        ) -> Result<
-            tonic::Response<super::GetQueryServicesDescriptorResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::GetQueryServicesDescriptorResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.reflection.v2alpha1.ReflectionService/GetQueryServicesDescriptor",
@@ -431,15 +409,12 @@ pub mod reflection_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::GetTxDescriptorRequest>,
         ) -> Result<tonic::Response<super::GetTxDescriptorResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.reflection.v2alpha1.ReflectionService/GetTxDescriptor",

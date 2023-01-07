@@ -12,8 +12,8 @@ pub struct MsgUnjailResponse {}
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Msg defines the slashing Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -45,10 +45,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -58,9 +55,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -86,19 +82,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgUnjail>,
         ) -> Result<tonic::Response<super::MsgUnjailResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.slashing.v1beta1.Msg/Unjail",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.slashing.v1beta1.Msg/Unjail");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -180,9 +171,7 @@ pub struct QuerySigningInfoResponse {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct QuerySigningInfosRequest {
     #[prost(message, optional, tag = "1")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QuerySigningInfosResponse is the response type for the Query/SigningInfos RPC
 /// method
@@ -193,15 +182,13 @@ pub struct QuerySigningInfosResponse {
     #[prost(message, repeated, tag = "1")]
     pub info: ::prost::alloc::vec::Vec<ValidatorSigningInfo>,
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query provides defines the gRPC querier service
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -246,9 +233,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -272,19 +258,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
         ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.slashing.v1beta1.Query/Params",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.slashing.v1beta1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// SigningInfo queries the signing info of given cons address
@@ -292,19 +274,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QuerySigningInfoRequest>,
         ) -> Result<tonic::Response<super::QuerySigningInfoResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.slashing.v1beta1.Query/SigningInfo",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.slashing.v1beta1.Query/SigningInfo");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// SigningInfos queries signing info of all validators
@@ -312,19 +290,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QuerySigningInfosRequest>,
         ) -> Result<tonic::Response<super::QuerySigningInfosResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.slashing.v1beta1.Query/SigningInfos",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.slashing.v1beta1.Query/SigningInfos");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

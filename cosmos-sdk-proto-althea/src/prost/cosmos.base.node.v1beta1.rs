@@ -12,8 +12,8 @@ pub struct ConfigResponse {
 /// Generated client implementations.
 pub mod service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Service defines the gRPC querier service for node related queries.
     #[derive(Debug, Clone)]
     pub struct ServiceClient<T> {
@@ -58,9 +58,8 @@ pub mod service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             ServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -84,19 +83,15 @@ pub mod service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ConfigRequest>,
         ) -> Result<tonic::Response<super::ConfigResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.base.node.v1beta1.Service/Config",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.base.node.v1beta1.Service/Config");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

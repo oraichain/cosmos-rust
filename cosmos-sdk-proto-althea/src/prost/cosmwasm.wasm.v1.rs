@@ -166,9 +166,7 @@ impl ContractCodeHistoryOperationType {
             ContractCodeHistoryOperationType::Unspecified => {
                 "CONTRACT_CODE_HISTORY_OPERATION_TYPE_UNSPECIFIED"
             }
-            ContractCodeHistoryOperationType::Init => {
-                "CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT"
-            }
+            ContractCodeHistoryOperationType::Init => "CONTRACT_CODE_HISTORY_OPERATION_TYPE_INIT",
             ContractCodeHistoryOperationType::Migrate => {
                 "CONTRACT_CODE_HISTORY_OPERATION_TYPE_MIGRATE"
             }
@@ -218,9 +216,8 @@ pub struct QueryContractHistoryRequest {
     pub address: ::prost::alloc::string::String,
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::super::cosmos::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination:
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageRequest>,
 }
 /// QueryContractHistoryResponse is the response type for the
 /// Query/ContractHistory RPC method
@@ -231,9 +228,8 @@ pub struct QueryContractHistoryResponse {
     pub entries: ::prost::alloc::vec::Vec<ContractCodeHistoryEntry>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::super::cosmos::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination:
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
 }
 /// QueryContractsByCodeRequest is the request type for the Query/ContractsByCode
 /// RPC method
@@ -245,9 +241,8 @@ pub struct QueryContractsByCodeRequest {
     pub code_id: u64,
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::super::cosmos::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination:
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageRequest>,
 }
 /// QueryContractsByCodeResponse is the response type for the
 /// Query/ContractsByCode RPC method
@@ -259,9 +254,8 @@ pub struct QueryContractsByCodeResponse {
     pub contracts: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::super::cosmos::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination:
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
 }
 /// QueryAllContractStateRequest is the request type for the
 /// Query/AllContractState RPC method
@@ -273,9 +267,8 @@ pub struct QueryAllContractStateRequest {
     pub address: ::prost::alloc::string::String,
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::super::cosmos::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination:
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageRequest>,
 }
 /// QueryAllContractStateResponse is the response type for the
 /// Query/AllContractState RPC method
@@ -286,9 +279,8 @@ pub struct QueryAllContractStateResponse {
     pub models: ::prost::alloc::vec::Vec<Model>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::super::cosmos::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination:
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
 }
 /// QueryRawContractStateRequest is the request type for the
 /// Query/RawContractState RPC method
@@ -366,9 +358,8 @@ pub struct QueryCodeResponse {
 pub struct QueryCodesRequest {
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "1")]
-    pub pagination: ::core::option::Option<
-        super::super::super::cosmos::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination:
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageRequest>,
 }
 /// QueryCodesResponse is the response type for the Query/Codes RPC method
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -378,9 +369,8 @@ pub struct QueryCodesResponse {
     pub code_infos: ::prost::alloc::vec::Vec<CodeInfoResponse>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::super::cosmos::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination:
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
 }
 /// QueryPinnedCodesRequest is the request type for the Query/PinnedCodes
 /// RPC method
@@ -389,9 +379,8 @@ pub struct QueryCodesResponse {
 pub struct QueryPinnedCodesRequest {
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::super::cosmos::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination:
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageRequest>,
 }
 /// QueryPinnedCodesResponse is the response type for the
 /// Query/PinnedCodes RPC method
@@ -402,15 +391,14 @@ pub struct QueryPinnedCodesResponse {
     pub code_ids: ::prost::alloc::vec::Vec<u64>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::super::cosmos::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination:
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
 }
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query provides defines the gRPC querier service
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -455,9 +443,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -481,134 +468,95 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryContractInfoRequest>,
         ) -> Result<tonic::Response<super::QueryContractInfoResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Query/ContractInfo",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Query/ContractInfo");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ContractHistory gets the contract code history
         pub async fn contract_history(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryContractHistoryRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryContractHistoryResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryContractHistoryResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Query/ContractHistory",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Query/ContractHistory");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ContractsByCode lists all smart contracts for a code id
         pub async fn contracts_by_code(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryContractsByCodeRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryContractsByCodeResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryContractsByCodeResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Query/ContractsByCode",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Query/ContractsByCode");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// AllContractState gets all raw store data for a single contract
         pub async fn all_contract_state(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllContractStateRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryAllContractStateResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryAllContractStateResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Query/AllContractState",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Query/AllContractState");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// RawContractState gets single key from the raw store data of a contract
         pub async fn raw_contract_state(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryRawContractStateRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryRawContractStateResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryRawContractStateResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Query/RawContractState",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Query/RawContractState");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// SmartContractState get smart query result from the contract
         pub async fn smart_contract_state(
             &mut self,
             request: impl tonic::IntoRequest<super::QuerySmartContractStateRequest>,
-        ) -> Result<
-            tonic::Response<super::QuerySmartContractStateResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QuerySmartContractStateResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Query/SmartContractState",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Query/SmartContractState");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Code gets the binary code and metadata for a singe wasm code
@@ -616,19 +564,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryCodeRequest>,
         ) -> Result<tonic::Response<super::QueryCodeResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Query/Code",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Query/Code");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Codes gets the metadata for all stored wasm codes
@@ -636,19 +579,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryCodesRequest>,
         ) -> Result<tonic::Response<super::QueryCodesResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Query/Codes",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Query/Codes");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// PinnedCodes gets the pinned code ids
@@ -656,19 +594,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryPinnedCodesRequest>,
         ) -> Result<tonic::Response<super::QueryPinnedCodesResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Query/PinnedCodes",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Query/PinnedCodes");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -718,9 +651,7 @@ pub struct MsgInstantiateContract {
     pub msg: ::prost::alloc::vec::Vec<u8>,
     /// Funds coins that are transferred to the contract on instantiation
     #[prost(message, repeated, tag = "6")]
-    pub funds: ::prost::alloc::vec::Vec<
-        super::super::super::cosmos::base::v1beta1::Coin,
-    >,
+    pub funds: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
 }
 /// MsgInstantiateContractResponse return instantiation result data
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -748,9 +679,7 @@ pub struct MsgExecuteContract {
     pub msg: ::prost::alloc::vec::Vec<u8>,
     /// Funds coins that are transferred to the contract on execution
     #[prost(message, repeated, tag = "5")]
-    pub funds: ::prost::alloc::vec::Vec<
-        super::super::super::cosmos::base::v1beta1::Coin,
-    >,
+    pub funds: ::prost::alloc::vec::Vec<super::super::super::cosmos::base::v1beta1::Coin>,
 }
 /// MsgExecuteContractResponse returns execution result data.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -822,8 +751,8 @@ pub struct MsgClearAdminResponse {}
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Msg defines the wasm Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -855,10 +784,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -868,9 +794,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -894,42 +819,30 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgStoreCode>,
         ) -> Result<tonic::Response<super::MsgStoreCodeResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Msg/StoreCode",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/StoreCode");
             self.inner.unary(request.into_request(), path, codec).await
         }
         ///  Instantiate creates a new smart contract instance for the given code id.
         pub async fn instantiate_contract(
             &mut self,
             request: impl tonic::IntoRequest<super::MsgInstantiateContract>,
-        ) -> Result<
-            tonic::Response<super::MsgInstantiateContractResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::MsgInstantiateContractResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Msg/InstantiateContract",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/InstantiateContract");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Execute submits the given message data to a smart contract
@@ -937,19 +850,15 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgExecuteContract>,
         ) -> Result<tonic::Response<super::MsgExecuteContractResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Msg/ExecuteContract",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/ExecuteContract");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Migrate runs a code upgrade/ downgrade for a smart contract
@@ -957,19 +866,15 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgMigrateContract>,
         ) -> Result<tonic::Response<super::MsgMigrateContractResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Msg/MigrateContract",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/MigrateContract");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// UpdateAdmin sets a new   admin for a smart contract
@@ -977,19 +882,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgUpdateAdmin>,
         ) -> Result<tonic::Response<super::MsgUpdateAdminResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Msg/UpdateAdmin",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/UpdateAdmin");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ClearAdmin removes any admin stored for a smart contract
@@ -997,19 +897,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgClearAdmin>,
         ) -> Result<tonic::Response<super::MsgClearAdminResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmwasm.wasm.v1.Msg/ClearAdmin",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmwasm.wasm.v1.Msg/ClearAdmin");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

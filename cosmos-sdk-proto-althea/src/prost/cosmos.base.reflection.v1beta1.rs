@@ -25,15 +25,13 @@ pub struct ListImplementationsRequest {
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct ListImplementationsResponse {
     #[prost(string, repeated, tag = "1")]
-    pub implementation_message_names: ::prost::alloc::vec::Vec<
-        ::prost::alloc::string::String,
-    >,
+    pub implementation_message_names: ::prost::alloc::vec::Vec<::prost::alloc::string::String>,
 }
 /// Generated client implementations.
 pub mod reflection_service_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// ReflectionService defines a service for interface reflection.
     #[derive(Debug, Clone)]
     pub struct ReflectionServiceClient<T> {
@@ -78,9 +76,8 @@ pub mod reflection_service_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             ReflectionServiceClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -105,15 +102,12 @@ pub mod reflection_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ListAllInterfacesRequest>,
         ) -> Result<tonic::Response<super::ListAllInterfacesResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.reflection.v1beta1.ReflectionService/ListAllInterfaces",
@@ -126,15 +120,12 @@ pub mod reflection_service_client {
             &mut self,
             request: impl tonic::IntoRequest<super::ListImplementationsRequest>,
         ) -> Result<tonic::Response<super::ListImplementationsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static(
                 "/cosmos.base.reflection.v1beta1.ReflectionService/ListImplementations",

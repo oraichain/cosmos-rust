@@ -284,8 +284,8 @@ pub struct MsgDepositResponse {}
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Msg defines the bank Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -317,10 +317,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -330,9 +327,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -356,19 +352,15 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSubmitProposal>,
         ) -> Result<tonic::Response<super::MsgSubmitProposalResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.gov.v1beta1.Msg/SubmitProposal",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.gov.v1beta1.Msg/SubmitProposal");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Vote defines a method to add a vote on a specific proposal.
@@ -376,19 +368,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgVote>,
         ) -> Result<tonic::Response<super::MsgVoteResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.gov.v1beta1.Msg/Vote",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.gov.v1beta1.Msg/Vote");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// VoteWeighted defines a method to add a weighted vote on a specific proposal.
@@ -398,19 +385,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgVoteWeighted>,
         ) -> Result<tonic::Response<super::MsgVoteWeightedResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.gov.v1beta1.Msg/VoteWeighted",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.gov.v1beta1.Msg/VoteWeighted");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Deposit defines a method to add deposit on a specific proposal.
@@ -418,19 +400,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgDeposit>,
         ) -> Result<tonic::Response<super::MsgDepositResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.gov.v1beta1.Msg/Deposit",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.gov.v1beta1.Msg/Deposit");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -465,9 +442,7 @@ pub struct QueryProposalsRequest {
     pub depositor: ::prost::alloc::string::String,
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "4")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryProposalsResponse is the response type for the Query/Proposals RPC
 /// method.
@@ -478,9 +453,7 @@ pub struct QueryProposalsResponse {
     pub proposals: ::prost::alloc::vec::Vec<Proposal>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// QueryVoteRequest is the request type for the Query/Vote RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -510,9 +483,7 @@ pub struct QueryVotesRequest {
     pub proposal_id: u64,
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryVotesResponse is the response type for the Query/Votes RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -523,9 +494,7 @@ pub struct QueryVotesResponse {
     pub votes: ::prost::alloc::vec::Vec<Vote>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// QueryParamsRequest is the request type for the Query/Params RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -578,9 +547,7 @@ pub struct QueryDepositsRequest {
     pub proposal_id: u64,
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryDepositsResponse is the response type for the Query/Deposits RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -590,9 +557,7 @@ pub struct QueryDepositsResponse {
     pub deposits: ::prost::alloc::vec::Vec<Deposit>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// QueryTallyResultRequest is the request type for the Query/Tally RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -613,8 +578,8 @@ pub struct QueryTallyResultResponse {
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query defines the gRPC querier service for gov module
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -659,9 +624,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -685,19 +649,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryProposalRequest>,
         ) -> Result<tonic::Response<super::QueryProposalResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.gov.v1beta1.Query/Proposal",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.gov.v1beta1.Query/Proposal");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Proposals queries all proposals based on given status.
@@ -705,19 +664,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryProposalsRequest>,
         ) -> Result<tonic::Response<super::QueryProposalsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.gov.v1beta1.Query/Proposals",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.gov.v1beta1.Query/Proposals");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Vote queries voted information based on proposalID, voterAddr.
@@ -725,19 +679,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryVoteRequest>,
         ) -> Result<tonic::Response<super::QueryVoteResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.gov.v1beta1.Query/Vote",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.gov.v1beta1.Query/Vote");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Votes queries votes of a given proposal.
@@ -745,19 +694,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryVotesRequest>,
         ) -> Result<tonic::Response<super::QueryVotesResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.gov.v1beta1.Query/Votes",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.gov.v1beta1.Query/Votes");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Params queries all parameters of the gov module.
@@ -765,19 +709,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
         ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.gov.v1beta1.Query/Params",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.gov.v1beta1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Deposit queries single deposit information based proposalID, depositAddr.
@@ -785,19 +724,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDepositRequest>,
         ) -> Result<tonic::Response<super::QueryDepositResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.gov.v1beta1.Query/Deposit",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.gov.v1beta1.Query/Deposit");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Deposits queries all deposits of a single proposal.
@@ -805,19 +739,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryDepositsRequest>,
         ) -> Result<tonic::Response<super::QueryDepositsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.gov.v1beta1.Query/Deposits",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.gov.v1beta1.Query/Deposits");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// TallyResult queries the tally of a proposal vote.
@@ -825,19 +754,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryTallyResultRequest>,
         ) -> Result<tonic::Response<super::QueryTallyResultResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.gov.v1beta1.Query/TallyResult",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.gov.v1beta1.Query/TallyResult");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

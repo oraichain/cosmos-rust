@@ -19,8 +19,8 @@ pub struct MsgSubmitEvidenceResponse {
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Msg defines the evidence Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -52,10 +52,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -65,9 +62,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -92,19 +88,15 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgSubmitEvidence>,
         ) -> Result<tonic::Response<super::MsgSubmitEvidenceResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.evidence.v1beta1.Msg/SubmitEvidence",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.evidence.v1beta1.Msg/SubmitEvidence");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -146,9 +138,7 @@ pub struct QueryEvidenceResponse {
 pub struct QueryAllEvidenceRequest {
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "1")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryAllEvidenceResponse is the response type for the Query/AllEvidence RPC
 /// method.
@@ -160,15 +150,13 @@ pub struct QueryAllEvidenceResponse {
     pub evidence: ::prost::alloc::vec::Vec<::prost_types::Any>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query defines the gRPC querier service.
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -213,9 +201,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -239,19 +226,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryEvidenceRequest>,
         ) -> Result<tonic::Response<super::QueryEvidenceResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.evidence.v1beta1.Query/Evidence",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.evidence.v1beta1.Query/Evidence");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// AllEvidence queries all evidence.
@@ -259,19 +242,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAllEvidenceRequest>,
         ) -> Result<tonic::Response<super::QueryAllEvidenceResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.evidence.v1beta1.Query/AllEvidence",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.evidence.v1beta1.Query/AllEvidence");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

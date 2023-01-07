@@ -89,8 +89,8 @@ pub struct MsgRevokeResponse {}
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Msg defines the authz Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -122,10 +122,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -135,9 +132,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -164,19 +160,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgGrant>,
         ) -> Result<tonic::Response<super::MsgGrantResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.authz.v1beta1.Msg/Grant",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.authz.v1beta1.Msg/Grant");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Exec attempts to execute the provided messages using
@@ -186,19 +177,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgExec>,
         ) -> Result<tonic::Response<super::MsgExecResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.authz.v1beta1.Msg/Exec",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.authz.v1beta1.Msg/Exec");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Revoke revokes any authorization corresponding to the provided method name on the
@@ -207,19 +193,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgRevoke>,
         ) -> Result<tonic::Response<super::MsgRevokeResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.authz.v1beta1.Msg/Revoke",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.authz.v1beta1.Msg/Revoke");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -237,9 +218,7 @@ pub struct QueryGrantsRequest {
     pub msg_type_url: ::prost::alloc::string::String,
     /// pagination defines an pagination for the request.
     #[prost(message, optional, tag = "4")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryGrantsResponse is the response type for the Query/Authorizations RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -250,9 +229,7 @@ pub struct QueryGrantsResponse {
     pub grants: ::prost::alloc::vec::Vec<Grant>,
     /// pagination defines an pagination for the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// QueryGranterGrantsRequest is the request type for the Query/GranterGrants RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -262,9 +239,7 @@ pub struct QueryGranterGrantsRequest {
     pub granter: ::prost::alloc::string::String,
     /// pagination defines an pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryGranterGrantsResponse is the response type for the Query/GranterGrants RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -275,9 +250,7 @@ pub struct QueryGranterGrantsResponse {
     pub grants: ::prost::alloc::vec::Vec<GrantAuthorization>,
     /// pagination defines an pagination for the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// QueryGranteeGrantsRequest is the request type for the Query/IssuedGrants RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -287,9 +260,7 @@ pub struct QueryGranteeGrantsRequest {
     pub grantee: ::prost::alloc::string::String,
     /// pagination defines an pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageRequest>,
 }
 /// QueryGranteeGrantsResponse is the response type for the Query/GranteeGrants RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -300,15 +271,13 @@ pub struct QueryGranteeGrantsResponse {
     pub grants: ::prost::alloc::vec::Vec<GrantAuthorization>,
     /// pagination defines an pagination for the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination: ::core::option::Option<super::super::base::query::v1beta1::PageResponse>,
 }
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query defines the gRPC querier service.
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -353,9 +322,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -379,19 +347,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGrantsRequest>,
         ) -> Result<tonic::Response<super::QueryGrantsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.authz.v1beta1.Query/Grants",
-            );
+            let path = http::uri::PathAndQuery::from_static("/cosmos.authz.v1beta1.Query/Grants");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// GranterGrants returns list of `GrantAuthorization`, granted by granter.
@@ -401,19 +364,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGranterGrantsRequest>,
         ) -> Result<tonic::Response<super::QueryGranterGrantsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.authz.v1beta1.Query/GranterGrants",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.authz.v1beta1.Query/GranterGrants");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// GranteeGrants returns a list of `GrantAuthorization` by grantee.
@@ -423,19 +382,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryGranteeGrantsRequest>,
         ) -> Result<tonic::Response<super::QueryGranteeGrantsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/cosmos.authz.v1beta1.Query/GranteeGrants",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/cosmos.authz.v1beta1.Query/GranteeGrants");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

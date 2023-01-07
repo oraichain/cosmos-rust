@@ -374,8 +374,8 @@ pub struct MsgEthereumTxResponse {
 /// Generated client implementations.
 pub mod msg_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Msg defines the evm Msg service.
     #[derive(Debug, Clone)]
     pub struct MsgClient<T> {
@@ -407,10 +407,7 @@ pub mod msg_client {
             let inner = tonic::client::Grpc::with_origin(inner, origin);
             Self { inner }
         }
-        pub fn with_interceptor<F>(
-            inner: T,
-            interceptor: F,
-        ) -> MsgClient<InterceptedService<T, F>>
+        pub fn with_interceptor<F>(inner: T, interceptor: F) -> MsgClient<InterceptedService<T, F>>
         where
             F: tonic::service::Interceptor,
             T::ResponseBody: Default,
@@ -420,9 +417,8 @@ pub mod msg_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             MsgClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -446,19 +442,14 @@ pub mod msg_client {
             &mut self,
             request: impl tonic::IntoRequest<super::MsgEthereumTx>,
         ) -> Result<tonic::Response<super::MsgEthereumTxResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Msg/EthereumTx",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Msg/EthereumTx");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -595,9 +586,8 @@ pub struct QueryTxLogsRequest {
     pub hash: ::prost::alloc::string::String,
     /// pagination defines an optional pagination for the request.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::super::cosmos::base::query::v1beta1::PageRequest,
-    >,
+    pub pagination:
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageRequest>,
 }
 /// QueryTxLogs is the response type for the Query/TxLogs RPC method.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -608,9 +598,8 @@ pub struct QueryTxLogsResponse {
     pub logs: ::prost::alloc::vec::Vec<Log>,
     /// pagination defines the pagination in the response.
     #[prost(message, optional, tag = "2")]
-    pub pagination: ::core::option::Option<
-        super::super::super::cosmos::base::query::v1beta1::PageResponse,
-    >,
+    pub pagination:
+        ::core::option::Option<super::super::super::cosmos::base::query::v1beta1::PageResponse>,
 }
 /// QueryParamsRequest defines the request type for querying x/evm parameters.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -717,8 +706,8 @@ pub struct QueryBaseFeeResponse {
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query defines the gRPC querier service.
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -763,9 +752,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -789,19 +777,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryAccountRequest>,
         ) -> Result<tonic::Response<super::QueryAccountResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Query/Account",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/Account");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// CosmosAccount queries an Ethereum account's Cosmos Address.
@@ -809,19 +792,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryCosmosAccountRequest>,
         ) -> Result<tonic::Response<super::QueryCosmosAccountResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Query/CosmosAccount",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/CosmosAccount");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// ValidatorAccount queries an Ethereum account's from a validator consensus
@@ -829,23 +808,16 @@ pub mod query_client {
         pub async fn validator_account(
             &mut self,
             request: impl tonic::IntoRequest<super::QueryValidatorAccountRequest>,
-        ) -> Result<
-            tonic::Response<super::QueryValidatorAccountResponse>,
-            tonic::Status,
-        > {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+        ) -> Result<tonic::Response<super::QueryValidatorAccountResponse>, tonic::Status> {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Query/ValidatorAccount",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/ValidatorAccount");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Balance queries the balance of a the EVM denomination for a single
@@ -854,19 +826,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryBalanceRequest>,
         ) -> Result<tonic::Response<super::QueryBalanceResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Query/Balance",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/Balance");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Storage queries the balance of all coins for a single account.
@@ -874,19 +841,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryStorageRequest>,
         ) -> Result<tonic::Response<super::QueryStorageResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Query/Storage",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/Storage");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Code queries the balance of all coins for a single account.
@@ -894,19 +856,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryCodeRequest>,
         ) -> Result<tonic::Response<super::QueryCodeResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Query/Code",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/Code");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// Params queries the parameters of x/evm module.
@@ -914,19 +871,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
         ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Query/Params",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// EthCall implements the `eth_call` rpc api
@@ -934,19 +886,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::EthCallRequest>,
         ) -> Result<tonic::Response<super::MsgEthereumTxResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Query/EthCall",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/EthCall");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// EstimateGas implements the `eth_estimateGas` rpc api
@@ -954,19 +901,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::EthCallRequest>,
         ) -> Result<tonic::Response<super::EstimateGasResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Query/EstimateGas",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/EstimateGas");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// TraceTx implements the `debug_traceTransaction` rpc api
@@ -974,19 +916,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryTraceTxRequest>,
         ) -> Result<tonic::Response<super::QueryTraceTxResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Query/TraceTx",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/TraceTx");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// TraceBlock implements the `debug_traceBlockByNumber` and `debug_traceBlockByHash` rpc api
@@ -994,19 +931,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryTraceBlockRequest>,
         ) -> Result<tonic::Response<super::QueryTraceBlockResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Query/TraceBlock",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/TraceBlock");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// BaseFee queries the base fee of the parent block of the current block,
@@ -1015,19 +947,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryBaseFeeRequest>,
         ) -> Result<tonic::Response<super::QueryBaseFeeResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.evm.v1.Query/BaseFee",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/BaseFee");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

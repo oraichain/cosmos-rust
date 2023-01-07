@@ -66,8 +66,8 @@ pub struct QueryBlockGasResponse {
 /// Generated client implementations.
 pub mod query_client {
     #![allow(unused_variables, dead_code, missing_docs, clippy::let_unit_value)]
-    use tonic::codegen::*;
     use tonic::codegen::http::Uri;
+    use tonic::codegen::*;
     /// Query defines the gRPC querier service.
     #[derive(Debug, Clone)]
     pub struct QueryClient<T> {
@@ -112,9 +112,8 @@ pub mod query_client {
                     <T as tonic::client::GrpcService<tonic::body::BoxBody>>::ResponseBody,
                 >,
             >,
-            <T as tonic::codegen::Service<
-                http::Request<tonic::body::BoxBody>,
-            >>::Error: Into<StdError> + Send + Sync,
+            <T as tonic::codegen::Service<http::Request<tonic::body::BoxBody>>>::Error:
+                Into<StdError> + Send + Sync,
         {
             QueryClient::new(InterceptedService::new(inner, interceptor))
         }
@@ -138,19 +137,14 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryParamsRequest>,
         ) -> Result<tonic::Response<super::QueryParamsResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.feemarket.v1.Query/Params",
-            );
+            let path = http::uri::PathAndQuery::from_static("/ethermint.feemarket.v1.Query/Params");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// BaseFee queries the base fee of the parent block of the current block.
@@ -158,19 +152,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryBaseFeeRequest>,
         ) -> Result<tonic::Response<super::QueryBaseFeeResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.feemarket.v1.Query/BaseFee",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ethermint.feemarket.v1.Query/BaseFee");
             self.inner.unary(request.into_request(), path, codec).await
         }
         /// BlockGas queries the gas used at a given block height
@@ -178,19 +168,15 @@ pub mod query_client {
             &mut self,
             request: impl tonic::IntoRequest<super::QueryBlockGasRequest>,
         ) -> Result<tonic::Response<super::QueryBlockGasResponse>, tonic::Status> {
-            self.inner
-                .ready()
-                .await
-                .map_err(|e| {
-                    tonic::Status::new(
-                        tonic::Code::Unknown,
-                        format!("Service was not ready: {}", e.into()),
-                    )
-                })?;
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static(
-                "/ethermint.feemarket.v1.Query/BlockGas",
-            );
+            let path =
+                http::uri::PathAndQuery::from_static("/ethermint.feemarket.v1.Query/BlockGas");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
