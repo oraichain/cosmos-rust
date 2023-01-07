@@ -1,14 +1,18 @@
 //! Transaction fees
 
 use super::Gas;
-use crate::{proto, AccountId, Coin, ErrorReport, Result};
+use crate::{
+    proto::{self, traits::ParseOptional},
+    AccountId, Coin, ErrorReport, Result,
+};
+use serde::{Deserialize, Serialize};
 
 /// Fee includes the amount of coins paid in fees and the maximum gas to be
 /// used by the transaction.
 ///
 /// The ratio yields an effective “gasprice”, which must be above some minimum
 /// to be accepted into the mempool.
-#[derive(Clone, Debug, Eq, PartialEq, PartialOrd, Ord)]
+#[derive(Clone, Debug, Deserialize, Eq, PartialEq, PartialOrd, Ord, Serialize)]
 pub struct Fee {
     /// Amount of coins to be paid as a fee.
     pub amount: Vec<Coin>,
@@ -66,22 +70,11 @@ impl TryFrom<&proto::cosmos::tx::v1beta1::Fee> for Fee {
             .map(TryFrom::try_from)
             .collect::<Result<_, _>>()?;
 
-        let gas_limit = proto.gas_limit.into();
-        let mut accounts = [None, None];
-
-        for (index, id) in [&proto.payer, &proto.granter].iter().enumerate() {
-            if id.is_empty() {
-                accounts[index] = None;
-            } else {
-                accounts[index] = Some(proto.payer.parse()?)
-            }
-        }
-
         Ok(Fee {
             amount,
-            gas_limit,
-            payer: accounts[0].take(),
-            granter: accounts[1].take(),
+            gas_limit: proto.gas_limit,
+            payer: proto.payer.parse_optional()?,
+            granter: proto.granter.parse_optional()?,
         })
     }
 }
@@ -96,7 +89,7 @@ impl From<&Fee> for proto::cosmos::tx::v1beta1::Fee {
     fn from(fee: &Fee) -> proto::cosmos::tx::v1beta1::Fee {
         proto::cosmos::tx::v1beta1::Fee {
             amount: fee.amount.iter().map(Into::into).collect(),
-            gas_limit: fee.gas_limit.value(),
+            gas_limit: fee.gas_limit,
             payer: fee
                 .payer
                 .as_ref()

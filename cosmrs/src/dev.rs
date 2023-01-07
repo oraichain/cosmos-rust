@@ -3,11 +3,14 @@
 //! This module contains support for integration testing against a
 //! Cosmos SDK-compatible full node (gaia) running inside of Docker.
 
+#![allow(clippy::panic)]
+
 use crate::{
     rpc::{self, Client},
-    tx::{self, Tx},
+    tx::Tx,
 };
 use std::{ffi::OsStr, panic, process, str, time::Duration};
+use tendermint::Hash;
 use tokio::time;
 
 /// Docker image (on Docker Hub) containing a single-node test environment for
@@ -80,7 +83,7 @@ pub async fn poll_for_first_block(rpc_client: &rpc::HttpClient) {
     rpc_client
         .wait_until_healthy(Duration::from_secs(5))
         .await
-        .unwrap();
+        .expect("error waiting for RPC to return healthy responses");
 
     let mut attempts_remaining = 25;
 
@@ -99,8 +102,12 @@ pub async fn poll_for_first_block(rpc_client: &rpc::HttpClient) {
 }
 
 /// Wait for a transaction with the given hash to appear in the blockchain
-pub async fn poll_for_tx(rpc_client: &rpc::HttpClient, tx_hash: tx::Hash) -> Tx {
+pub async fn poll_for_tx(rpc_client: &rpc::HttpClient, tx_hash: Hash) -> Tx {
     let attempts = 5;
+
+    // TODO(tarcieri): better conversion or unified `Hash` type, see tendermint-rs#1221
+    #[allow(clippy::unwrap_used)]
+    let tx_hash = tendermint::Hash::Sha256(tx_hash.as_ref().try_into().unwrap());
 
     for _ in 0..attempts {
         // TODO(tarcieri): handle not found errors

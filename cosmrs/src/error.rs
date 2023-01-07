@@ -2,7 +2,7 @@
 
 pub use eyre::{Report, Result};
 
-use crate::tx;
+use tendermint::Hash;
 use thiserror::Error;
 
 /// Kinds of errors.
@@ -46,7 +46,7 @@ pub enum Error {
         /// Expected type URL.
         expected: &'static str,
 
-        /// Actual type URL found in the [`prost_types::Any`] message.
+        /// Actual type URL found in the [`crate::Any`] message.
         found: String,
     },
 
@@ -54,9 +54,10 @@ pub enum Error {
     #[error("transaction not found: {hash:?}")]
     TxNotFound {
         /// Transaction hash that wasn't found.
-        hash: tx::Hash,
+        hash: Hash,
     },
 
+    /// Invalid value for the given field of an enum.
     #[error("invalid proto enum value: {name:?}, value: {found_value:?}")]
     InvalidEnumValue {
         /// Name of the enum field

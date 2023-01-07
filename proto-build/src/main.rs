@@ -28,14 +28,14 @@ const IBC_REV: &str = "v3.4.0";
 /// The wasmd commit or tag to be cloned and used to build the proto files
 const WASMD_REV: &str = "v0.23.0";
 
-/// The Tendermint commit or tag to be cloned and used to build the proto files
-const TENDERMINT_REV: &str = "v0.34.23";
-
 // The osmosis-labs/bech32-ibc commit or tag to be cloned and used to build the proto files
 const BECH32IBC_REV: &str = "v0.3.0-rc1";
 
 /// The Ethermint commit or tag to be cloned and used to build the proto files
 const ETHERMINT_REV: &str = "v0.19.3";
+
+/// The Tendermint commit or tag to be cloned and used to build the proto files
+const TENDERMINT_REV: &str = "v0.34.23";
 
 // All paths must end with a / and either be absolute or include a ./ to reference the current
 // working directory.
@@ -61,7 +61,7 @@ const TMP_BUILD_DIR: &str = "/tmp/tmp-protobuf/";
 
 /// Protos belonging to these Protobuf packages will be excluded
 /// (i.e. because they are sourced from `tendermint-proto`)
-const EXCLUDED_PROTO_PACKAGES: &[&str] = &["gogoproto", "google"];
+const EXCLUDED_PROTO_PACKAGES: &[&str] = &["gogoproto", "google", "tendermint"];
 /// Regex for locating instances of `tendermint-proto` in prost/tonic build output
 const TENDERMINT_PROTO_REGEX: &str = "(super::)+tendermint";
 /// Attribute preceeding a Tonic client definition
@@ -219,6 +219,18 @@ fn update_submodules() {
     run_git(&["submodule", "update", "--init"]);
     run_git(&["-C", WASMD_DIR, "fetch"]);
     run_git(&["-C", WASMD_DIR, "reset", "--hard", WASMD_REV]);
+
+    info!("Updating osmosis-labs/bech32-ibc submodule...");
+    run_git(&["-C", BECH32IBC_DIR, "fetch"]);
+    run_git(&["-C", BECH32IBC_DIR, "reset", "--hard", BECH32IBC_REV]);
+
+    info!("Updating tharsis/ethermint submodule...");
+    run_git(&["-C", ETHERMINT_DIR, "fetch"]);
+    run_git(&["-C", ETHERMINT_DIR, "reset", "--hard", ETHERMINT_REV]);
+
+    info!("Updating tendermint submodule...");
+    run_git(&["-C", TENDERMINT_DIR, "fetch"]);
+    run_git(&["-C", TENDERMINT_DIR, "reset", "--hard", TENDERMINT_REV]);
 }
 
 fn output_sdk_version(out_dir: &Path) {

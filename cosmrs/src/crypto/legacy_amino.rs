@@ -1,9 +1,14 @@
 //! Legacy Amino support.
 
 use super::PublicKey;
-use crate::{prost_ext::MessageExt, proto, Any, Error, ErrorReport, Result};
+use crate::{
+    proto::{
+        self,
+        traits::{Message, MessageExt},
+    },
+    Any, Error, ErrorReport, Result,
+};
 use eyre::WrapErr;
-use prost::Message;
 
 /// Legacy Amino multisig key.
 #[derive(Clone, Debug, Eq, PartialEq)]
