@@ -44,6 +44,7 @@ impl From<&AccessConfig> for proto::cosmwasm::wasm::v1::AccessConfig {
         proto::cosmwasm::wasm::v1::AccessConfig {
             permission: config.permission as i32,
             address: config.address.to_string(),
+            addresses: vec![],
         }
     }
 }

@@ -71,6 +71,7 @@ impl From<MsgStoreCodeResponse> for proto::cosmwasm::wasm::v1::MsgStoreCodeRespo
     fn from(msg: MsgStoreCodeResponse) -> proto::cosmwasm::wasm::v1::MsgStoreCodeResponse {
         proto::cosmwasm::wasm::v1::MsgStoreCodeResponse {
             code_id: msg.code_id,
+            checksum: vec![],
         }
     }
 }

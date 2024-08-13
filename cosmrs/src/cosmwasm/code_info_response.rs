@@ -32,6 +32,7 @@ impl From<CodeInfoResponse> for proto::cosmwasm::wasm::v1::CodeInfoResponse {
             code_id: code_info.code_id,
             creator: code_info.creator.to_string(),
             data_hash: code_info.data_hash,
+            instantiate_permission: None,
         }
     }
 }
