@@ -1,9 +1,11 @@
 [submodule "cosmos-sdk"]
 	path = cosmos-sdk-go
-	url = https://github.com/cosmos/cosmos-sdk.git
+	url = https://github.com/oraichain/cosmos-sdk.git
+	branch = v0.45.16-ics-epi-191
 [submodule "wasmd"]
 	path = wasmd
-	url = https://github.com/CosmWasm/wasmd.git
+	url = https://github.com/oraichain/wasmd.git
+	branch = feat/gasless-contract
 [submodule "ibc-go"]
 	path = ibc-go
 	url = https://github.com/cosmos/ibc-go
@@ -16,4 +18,5 @@
 	branch = master
 [submodule "ethermint"]
 	path = ethermint
-	url = https://github.com/tharsis/ethermint.git
+	url = https://github.com/oraichain/ethermint.git
+	rev = 7e4df27e54fd
