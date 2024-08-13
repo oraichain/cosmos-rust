@@ -19,13 +19,6 @@ pub struct Params {
     /// base fee for EIP-1559 blocks.
     #[prost(string, tag = "6")]
     pub base_fee: ::prost::alloc::string::String,
-    /// min_gas_price defines the minimum gas price value for cosmos and eth transactions
-    #[prost(string, tag = "7")]
-    pub min_gas_price: ::prost::alloc::string::String,
-    /// min gas denominator bounds the minimum gasUsed to be charged
-    /// to senders based on GasLimit
-    #[prost(string, tag = "8")]
-    pub min_gas_multiplier: ::prost::alloc::string::String,
 }
 /// QueryParamsRequest defines the request type for querying x/evm parameters.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -192,7 +185,7 @@ pub struct GenesisState {
     /// params defines all the paramaters of the module.
     #[prost(message, optional, tag = "1")]
     pub params: ::core::option::Option<Params>,
-    /// block gas is the amount of gas wanted on the last block before the upgrade.
+    /// block gas is the amount of gas used on the last block before the upgrade.
     /// Zero by default.
     #[prost(uint64, tag = "3")]
     pub block_gas: u64,

@@ -18,10 +18,9 @@ pub struct Params {
     /// chain config defines the EVM chain configuration parameters
     #[prost(message, optional, tag = "5")]
     pub chain_config: ::core::option::Option<ChainConfig>,
-    /// Allow unprotected transactions defines if replay-protected (i.e non EIP155
-    /// signed) transactions can be executed on the state machine.
-    #[prost(bool, tag = "6")]
-    pub allow_unprotected_txs: bool,
+    /// list of allowed eip712 msgs and their types
+    #[prost(message, repeated, tag = "6")]
+    pub eip712_allowed_msgs: ::prost::alloc::vec::Vec<Eip712AllowedMsg>,
 }
 /// ChainConfig defines the Ethereum ChainConfig parameters using *sdk.Int values
 /// instead of *big.Int.
@@ -74,12 +73,9 @@ pub struct ChainConfig {
     /// Eip-4345 (bomb delay) switch block (nil = no fork, 0 = already activated)
     #[prost(string, tag = "18")]
     pub arrow_glacier_block: ::prost::alloc::string::String,
-    ///   EIP-5133 (bomb delay) switch block (nil = no fork, 0 = already activated)
-    #[prost(string, tag = "20")]
-    pub gray_glacier_block: ::prost::alloc::string::String,
-    /// Virtual fork after The Merge to use as a network splitter
-    #[prost(string, tag = "21")]
-    pub merge_netsplit_block: ::prost::alloc::string::String,
+    /// EIP-3675 (TheMerge) switch block (nil = no fork, 0 = already in merge proceedings)
+    #[prost(string, tag = "19")]
+    pub merge_fork_block: ::prost::alloc::string::String,
 }
 /// State represents a single Storage key value pair item.
 #[allow(clippy::derive_partial_eq_without_eq)]
@@ -212,6 +208,43 @@ pub struct TraceConfig {
     #[prost(bool, tag = "12")]
     pub enable_return_data: bool,
 }
+/// EIP712AllowedMsg stores an allowed legacy msg and its eip712 type.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Eip712AllowedMsg {
+    /// msg's proto type name. ie "/cosmos.bank.v1beta1.MsgSend"
+    #[prost(string, tag = "1")]
+    pub msg_type_url: ::prost::alloc::string::String,
+    /// name of the eip712 value type. ie "MsgValueSend"
+    #[prost(string, tag = "2")]
+    pub msg_value_type_name: ::prost::alloc::string::String,
+    /// types of the msg value
+    #[prost(message, repeated, tag = "3")]
+    pub value_types: ::prost::alloc::vec::Vec<Eip712MsgAttrType>,
+    /// nested types of the msg value
+    #[prost(message, repeated, tag = "4")]
+    pub nested_types: ::prost::alloc::vec::Vec<Eip712NestedMsgType>,
+}
+/// EIP712MsgType is the eip712 type of a single message.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Eip712NestedMsgType {
+    /// name of the nested type. ie "Fee", "Coin"
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    /// attrs of the nested type
+    #[prost(message, repeated, tag = "2")]
+    pub attrs: ::prost::alloc::vec::Vec<Eip712MsgAttrType>,
+}
+/// EIP712MsgAttrType is the eip712 type of a single message attribute.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct Eip712MsgAttrType {
+    #[prost(string, tag = "1")]
+    pub name: ::prost::alloc::string::String,
+    #[prost(string, tag = "2")]
+    pub r#type: ::prost::alloc::string::String,
+}
 /// MsgEthereumTx encapsulates an Ethereum transaction as an SDK message.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
@@ -221,7 +254,7 @@ pub struct MsgEthereumTx {
     /// caches
     #[prost(message, optional, tag = "1")]
     pub data: ::core::option::Option<::prost_types::Any>,
-    /// DEPRECATED: encoded storage size of the transaction
+    /// encoded storage size of the transaction
     #[prost(double, tag = "2")]
     pub size: f64,
     /// transaction hash in hex format
@@ -234,8 +267,6 @@ pub struct MsgEthereumTx {
     pub from: ::prost::alloc::string::String,
 }
 /// LegacyTx is the transaction data of regular Ethereum transactions.
-/// NOTE: All non-protected transactions (i.e non EIP155 signed) will fail if the
-/// AllowUnprotectedTxs parameter is disabled.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
 pub struct LegacyTx {
@@ -371,6 +402,21 @@ pub struct MsgEthereumTxResponse {
     #[prost(uint64, tag = "5")]
     pub gas_used: u64,
 }
+/// MsgSetMappingEvmAddress defines a mapping from cosmos address to evm address.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgSetMappingEvmAddress {
+    /// signer cosmos address
+    #[prost(string, tag = "1")]
+    pub signer: ::prost::alloc::string::String,
+    /// public key that we will use to map cosmos to evm.
+    #[prost(string, tag = "2")]
+    pub pubkey: ::prost::alloc::string::String,
+}
+/// MsgSetMappingEvmAddressResponse defines the response value from Msg/SetMappingEvmAddress.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct MsgSetMappingEvmAddressResponse {}
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
 #[cfg_attr(docsrs, doc(cfg(feature = "grpc")))]
@@ -454,6 +500,23 @@ pub mod msg_client {
             })?;
             let codec = tonic::codec::ProstCodec::default();
             let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Msg/EthereumTx");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        /// SetMappingEvmAddress defines a method for mapping an evm address to a cosmos address
+        pub async fn set_mapping_evm_address(
+            &mut self,
+            request: impl tonic::IntoRequest<super::MsgSetMappingEvmAddress>,
+        ) -> Result<tonic::Response<super::MsgSetMappingEvmAddressResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Msg/SetMappingEvmAddress");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }
@@ -695,17 +758,33 @@ pub struct QueryTraceBlockResponse {
     #[prost(bytes = "vec", tag = "1")]
     pub data: ::prost::alloc::vec::Vec<u8>,
 }
-/// QueryBaseFeeRequest defines the request type for querying the EIP1559 base
-/// fee.
+/// QueryParamsRequest defines the request type for querying x/evmutil parameters.
 #[allow(clippy::derive_partial_eq_without_eq)]
 #[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryBaseFeeRequest {}
-/// BaseFeeResponse returns the EIP1559 base fee.
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct QueryBaseFeeResponse {
+pub struct QueryMappedEvmAddressRequest {
     #[prost(string, tag = "1")]
-    pub base_fee: ::prost::alloc::string::String,
+    pub cosmos_address: ::prost::alloc::string::String,
+}
+/// QueryParamsResponse defines the response type for querying x/evmutil parameters.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryMappedEvmAddressResponse {
+    #[prost(string, tag = "1")]
+    pub evm_address: ::prost::alloc::string::String,
+}
+/// QueryParamsRequest defines the request type for querying x/evmutil parameters.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryMappedCosmosAddressRequest {
+    #[prost(string, tag = "1")]
+    pub evm_address: ::prost::alloc::string::String,
+}
+/// QueryParamsResponse defines the response type for querying x/evmutil parameters.
+#[allow(clippy::derive_partial_eq_without_eq)]
+#[derive(Clone, PartialEq, ::prost::Message)]
+pub struct QueryMappedCosmosAddressResponse {
+    #[prost(string, tag = "1")]
+    pub cosmos_address: ::prost::alloc::string::String,
 }
 /// Generated client implementations.
 #[cfg(feature = "grpc")]
@@ -949,12 +1028,10 @@ pub mod query_client {
             let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/TraceBlock");
             self.inner.unary(request.into_request(), path, codec).await
         }
-        /// BaseFee queries the base fee of the parent block of the current block,
-        /// it's similar to feemarket module's method, but also checks london hardfork status.
-        pub async fn base_fee(
+        pub async fn mapped_evm_address(
             &mut self,
-            request: impl tonic::IntoRequest<super::QueryBaseFeeRequest>,
-        ) -> Result<tonic::Response<super::QueryBaseFeeResponse>, tonic::Status> {
+            request: impl tonic::IntoRequest<super::QueryMappedEvmAddressRequest>,
+        ) -> Result<tonic::Response<super::QueryMappedEvmAddressResponse>, tonic::Status> {
             self.inner.ready().await.map_err(|e| {
                 tonic::Status::new(
                     tonic::Code::Unknown,
@@ -962,7 +1039,24 @@ pub mod query_client {
                 )
             })?;
             let codec = tonic::codec::ProstCodec::default();
-            let path = http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/BaseFee");
+            let path =
+                http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/MappedEvmAddress");
+            self.inner.unary(request.into_request(), path, codec).await
+        }
+        pub async fn mapped_cosmos_address(
+            &mut self,
+            request: impl tonic::IntoRequest<super::QueryMappedCosmosAddressRequest>,
+        ) -> Result<tonic::Response<super::QueryMappedCosmosAddressResponse>, tonic::Status>
+        {
+            self.inner.ready().await.map_err(|e| {
+                tonic::Status::new(
+                    tonic::Code::Unknown,
+                    format!("Service was not ready: {}", e.into()),
+                )
+            })?;
+            let codec = tonic::codec::ProstCodec::default();
+            let path =
+                http::uri::PathAndQuery::from_static("/ethermint.evm.v1.Query/MappedCosmosAddress");
             self.inner.unary(request.into_request(), path, codec).await
         }
     }

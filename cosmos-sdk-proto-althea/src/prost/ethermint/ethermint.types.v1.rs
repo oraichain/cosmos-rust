@@ -25,31 +25,3 @@ pub struct ExtensionOptionsWeb3Tx {
     #[prost(bytes = "vec", tag = "3")]
     pub fee_payer_sig: ::prost::alloc::vec::Vec<u8>,
 }
-/// TxResult is the value stored in eth tx indexer
-#[allow(clippy::derive_partial_eq_without_eq)]
-#[derive(Clone, PartialEq, ::prost::Message)]
-pub struct TxResult {
-    /// the block height
-    #[prost(int64, tag = "1")]
-    pub height: i64,
-    /// cosmos tx index
-    #[prost(uint32, tag = "2")]
-    pub tx_index: u32,
-    /// the msg index in a batch tx
-    #[prost(uint32, tag = "3")]
-    pub msg_index: u32,
-    /// eth tx index, the index in the list of valid eth tx in the block,
-    /// aka. the transaction list returned by eth_getBlock api.
-    #[prost(int32, tag = "4")]
-    pub eth_tx_index: i32,
-    /// if the eth tx is failed
-    #[prost(bool, tag = "5")]
-    pub failed: bool,
-    /// gas used by tx, if exceeds block gas limit,
-    /// it's set to gas limit which is what's actually deducted by ante handler.
-    #[prost(uint64, tag = "6")]
-    pub gas_used: u64,
-    /// the cumulative gas used within current batch tx
-    #[prost(uint64, tag = "7")]
-    pub cumulative_gas_used: u64,
-}

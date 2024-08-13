@@ -20,22 +20,22 @@ use walkdir::WalkDir;
 static QUIET: AtomicBool = AtomicBool::new(false);
 
 /// The Cosmos SDK commit or tag to be cloned and used to build the proto files
-const COSMOS_SDK_REV: &str = "v0.45.11";
+const COSMOS_SDK_REV: &str = "1cc2c18cdd";
 
 /// The Cosmos ibc-go commit or tag to be cloned and used to build the proto files
-const IBC_REV: &str = "v3.4.0";
+const IBC_REV: &str = "dd93e7fcd";
 
 /// The wasmd commit or tag to be cloned and used to build the proto files
-const WASMD_REV: &str = "v0.23.0";
+const WASMD_REV: &str = "bef99cbee";
 
 // The osmosis-labs/bech32-ibc commit or tag to be cloned and used to build the proto files
 const BECH32IBC_REV: &str = "v0.3.0-rc1";
 
 /// The Ethermint commit or tag to be cloned and used to build the proto files
-const ETHERMINT_REV: &str = "v0.19.3";
+const ETHERMINT_REV: &str = "7e4df27e54fd";
 
 /// The Tendermint commit or tag to be cloned and used to build the proto files
-const TENDERMINT_REV: &str = "v0.34.23";
+const TENDERMINT_REV: &str = "482cde0c4e04";
 
 // All paths must end with a / and either be absolute or include a ./ to reference the current
 // working directory.
@@ -330,7 +330,9 @@ fn compile_wasmd_proto_and_services(out_dir: &Path) {
     let proto_includes_paths = [
         root.join("../proto"),
         sdk_dir.join("proto"),
-        sdk_dir.join("third_party/proto"),
+        // add cosmos dependencies
+        PathBuf::from(format!("{}/proto", COSMOS_SDK_DIR)),
+        PathBuf::from(format!("{}/third_party/proto", COSMOS_SDK_DIR)),
     ];
 
     // List available paths for dependencies
