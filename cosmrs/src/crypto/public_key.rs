@@ -41,6 +41,10 @@ impl PublicKey {
                 let id = tendermint::account::Id::from(*encoded_point);
                 AccountId::new(prefix, id.as_bytes())
             }
+            tendermint::PublicKey::Ed25519(encoded_point) => {
+                let id = tendermint::account::Id::from(*encoded_point);
+                AccountId::new(prefix, id.as_bytes())
+            }
             _ => Err(Error::Crypto.into()),
         }
     }
